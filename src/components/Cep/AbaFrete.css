@@ -1,0 +1,225 @@
+/* src/components/AbaFrete/AbaFrete.css */
+
+:root {
+    --cor-primaria: #2A6F47;
+    --cor-secundaria: #4CAF50;
+    --cor-fundo-readonly: #eeeeee;
+    --cor-fundo: #f8f9fa;
+    --cor-texto: #333333;
+    --cor-branco: #ffffff;
+    --cor-erro: #D32F2F;
+    --sombra-padrao: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .frete-container {
+    max-width: 600px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--cor-branco);
+    border-radius: 8px;
+    box-shadow: var(--sombra-padrao);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  .frete-container h2 {
+    color: var(--cor-primaria);
+    margin-bottom: 0.5rem;
+    text-align: center;
+    font-size: 2rem; /* Tamanho base para desktop */
+  }
+  
+  .frete-subtitulo {
+    color: #666;
+    margin-bottom: 2rem;
+    text-align: center;
+  }
+  
+  .form-group, .form-group-cep {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-group label {
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+    color: #555;
+    text-align: left;
+  }
+  
+  .form-group input {
+    padding: 12px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+  }
+  
+  .form-group input:focus {
+    outline: none;
+    border-color: var(--cor-secundaria);
+  }
+  
+  .form-group input[readOnly] {
+    background-color: var(--cor-fundo-readonly);
+    cursor: not-allowed;
+    color: #555;
+  }
+  
+  .form-group-cep {
+    flex-direction: row;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+  
+  .form-group-cep input#cep {
+    padding: 14px;
+    font-size: 1.1rem;
+  }
+  
+  .btn-buscar-cep {
+    padding: 14px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    background-color: var(--cor-primaria);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-buscar-cep:hover {
+    background-color: var(--cor-secundaria);
+  }
+  
+  .form-grid-duplo {
+      display: grid;
+      grid-template-columns: 3fr 1fr;
+      gap: 1rem;
+  }
+  
+  .btn-submit-form {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 1rem;
+    transition: background-color 0.3s;
+  }
+  
+  .btn-submit-form:hover {
+    background-color: #43a047;
+  }
+  
+  .btn-submit-form:disabled {
+    background-color: #9E9E9E;
+    cursor: not-allowed;
+  }
+  
+  .mensagem-loading, .mensagem-erro {
+    text-align: center;
+    font-weight: bold;
+    padding: 0.75rem;
+    border-radius: 5px;
+    margin-bottom: 1.25rem;
+  }
+  
+  .mensagem-loading {
+    color: var(--cor-primaria);
+  }
+  
+  .mensagem-erro {
+    color: var(--cor-erro);
+    background-color: #FFEBEE;
+  }
+  
+  .resultado-container {
+    margin-top: 2rem;
+    border-top: 1px solid #eee;
+    padding-top: 1.5rem;
+  }
+  
+  .frete-resultado {
+    background-color: var(--cor-fundo);
+    padding: 1rem;
+    border-radius: 5px;
+    border-left: 4px solid var(--cor-primaria);
+  }
+  
+  .frete-resultado h3 {
+    margin-top: 0;
+  }
+  
+  .botao-inicio-fixo {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: var(--cor-secundaria);
+    color: var(--cor-branco);
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    z-index: 999;
+    box-shadow: var(--sombra-padrao);
+    transition: background-color 0.3s ease;
+  }
+  
+  .botao-inicio-fixo:hover {
+    background-color: #5cb85c;
+  }
+  
+/* =============================================== */
+/* === Bloco de Media Queries para Responsividade === */
+/* =============================================== */
+
+/* Para telas de tablets e celulares maiores (até 768px) */
+@media (max-width: 768px) {
+    .frete-container {
+        /* Reduz o espaçamento lateral para aproveitar melhor a tela */
+        padding: 2rem 1.5rem;
+        margin: 1rem; /* Reduz a margem superior/inferior */
+    }
+
+    .frete-container h2 {
+        font-size: 1.7rem; /* Reduz o tamanho do título */
+    }
+
+    .form-group-cep {
+        /* Empilha o input de CEP e o botão */
+        flex-direction: column;
+        align-items: stretch; /* Faz o botão ocupar 100% da largura */
+    }
+
+    .form-grid-duplo {
+        /* Empilha os campos de Cidade e Estado mais cedo */
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Para telas de celulares menores (até 480px) */
+@media (max-width: 480px) {
+    .frete-container {
+        padding: 1.5rem 1rem; /* Ainda menos padding lateral */
+    }
+
+    .frete-container h2 {
+        font-size: 1.5rem; /* Título ainda menor */
+    }
+
+    .frete-subtitulo {
+        font-size: 0.9rem; /* Subtítulo menor */
+        margin-bottom: 1.5rem;
+    }
+
+    
+}

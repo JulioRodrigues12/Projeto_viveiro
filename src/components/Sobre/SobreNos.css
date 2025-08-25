@@ -1,0 +1,354 @@
+:root {
+  --cor-primaria: #2A6F47;
+  --cor-secundaria: #4CAF50;
+  --cor-fundo-readonly: #eeeeee;
+  --cor-fundo: #f8f9fa;
+  --cor-texto: #333333;
+  --cor-texto-secundario: #666;
+  --cor-branco: #ffffff;
+  --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* O estilo da classe .container principal virá do seu CSS global, 
+   portanto, a antiga classe .sobre-nos-container foi removida. */
+
+.hero-sobre, .cta-sobre {
+  width: 100%;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+}
+
+.hero-sobre {
+  text-align: center;
+  padding: 0;
+}
+
+.hero-sobre h1 {
+  font-size: 2.8rem;
+  color: var(--cor-primaria);
+  margin-bottom: 0.5rem;
+}
+
+.hero-sobre .subtitulo {
+  font-size: 1.2rem;
+  color: var(--cor-texto-secundario);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+/* --- Estilos Gerais para as Seções de Missão, Visão e Valores --- */
+
+.secao-mvv {
+  padding: 3rem 0;
+  border-top: 1px solid #e0e0e0;
+}
+
+.secao-mvv:first-of-type {
+  border-top: none;
+  padding-top: 0; /* Remove padding extra da primeira seção */
+}
+
+.secao-mvv h3 {
+  font-size: 2.2rem;
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+}
+
+.secao-mvv p, .secao-mvv ul {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: var(--cor-texto-secundario);
+}
+
+.icone-mvv {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+/* --- Estilos da Seção MISSÃO --- */
+
+.conteudo-mvv-dividido {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.coluna-texto-mvv {
+  text-align: left;
+}
+
+.declaracao-missao {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--cor-primaria);
+  border-left: 4px solid var(--cor-secundaria);
+  padding-left: 1.5rem;
+  margin: 1.5rem 0;
+  font-style: italic;
+}
+
+.compromissos-lista {
+  list-style: none;
+  padding: 0;
+  margin-top: 1.5rem;
+}
+
+.compromissos-lista li {
+  padding-left: 2rem;
+  position: relative;
+  margin-bottom: 1rem;
+  line-height: 1.6;
+}
+
+.compromissos-lista li::before {
+  content: '🌿';
+  position: absolute;
+  left: 0;
+  top: 0;
+  font-size: 1.2rem;
+}
+
+.coluna-galeria-mvv {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.imagem-galeria {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: var(--sombra-padrao);
+  transition: transform 0.3s ease;
+}
+
+.imagem-galeria:hover {
+  transform: scale(1.05);
+}
+
+.imagem-galeria:nth-child(2) {
+  margin-top: 2rem;
+}
+
+/* --- Estilos da Seção VISÃO --- */
+
+.layout-invertido .coluna-texto-mvv {
+  grid-column: 2;
+  grid-row: 1;
+}
+.layout-invertido .coluna-galeria-mvv {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.pilares-visao {
+  margin-top: 2rem;
+  display: grid;
+  gap: 1.5rem;
+}
+
+.pilar h4 {
+  font-size: 1.1rem;
+  color: var(--cor-texto);
+  margin-bottom: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.pilar h4::before {
+  content: '🌱';
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+}
+
+.pilar p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: var(--cor-texto-secundario);
+}
+
+.secao-visao .imagem-galeria:nth-child(2) {
+  margin-top: -2rem;
+  margin-left: -3rem;
+}
+
+
+
+.secao-valores .conteudo-valores {
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.cabecalho-valores {
+  max-width: 800px;
+  margin: 0 auto 3rem auto;
+}
+
+.grade-valores {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.card-valor {
+  background-color: var(--cor-branco);
+  padding: 2.5rem 2rem;
+  border-radius: 8px;
+  box-shadow: var(--sombra-padrao);
+  border-top: 4px solid var(--cor-secundaria);
+  text-align: center;
+}
+
+.icone-valor {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  line-height: 1;
+}
+.card-valor h4 {
+  font-size: 1.3rem;
+  color: var(--cor-primaria);
+  margin-bottom: 1rem;
+}
+.card-valor p {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--cor-texto-secundario);
+  margin: 0;
+}
+
+
+
+
+.conteudo-mvv-dividido,
+.conteudo-valores {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.secao-mvv.is-visible .conteudo-mvv-dividido,
+.secao-mvv.is-visible .conteudo-valores {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.card-valor {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.secao-valores.is-visible .card-valor {
+  opacity: 1;
+  transform: translateY(0);
+}
+.secao-valores.is-visible .card-valor:nth-child(2) { transition-delay: 0.15s; }
+.secao-valores.is-visible .card-valor:nth-child(3) { transition-delay: 0.3s; }
+.secao-valores.is-visible .card-valor:nth-child(4) { transition-delay: 0.45s; }
+
+
+
+
+.cta-sobre {
+  background-color: transparent;
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+}
+
+.cta-sobre h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: var(--cor-primaria);
+}
+
+.cta-sobre p {
+  color: var(--cor-texto-secundario);
+}
+
+.cta-button {
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  border: none;
+  padding: 14px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+.cta-button:hover {
+  background-color: #5cb85c;
+}
+
+
+
+.botao-inicio-fixo {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: var(--cor-secundaria);
+  color: var(--cor-branco);
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  z-index: 999;
+  box-shadow: var(--sombra-padrao);
+  transition: background-color 0.3s ease;
+}
+
+.botao-inicio-fixo:hover {
+  background-color: #5cb85c;
+}
+
+
+
+
+@media (max-width: 992px) {
+  .conteudo-mvv-dividido {
+    grid-template-columns: 1fr;
+  }
+
+  .layout-invertido .coluna-galeria-mvv {
+    order: -1;
+  }
+
+  .coluna-galeria-mvv {
+    margin-top: 2rem;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .imagem-galeria:nth-child(2),
+  .secao-visao .imagem-galeria:nth-child(2) {
+    margin-top: 0;
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-sobre h1 {
+    font-size: 2.2rem;
+  }
+  .secao-mvv {
+    padding: 2.5rem 0;
+  }
+  .secao-mvv h3 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .coluna-galeria-mvv {
+      grid-template-columns: 1fr;
+  }
+}
