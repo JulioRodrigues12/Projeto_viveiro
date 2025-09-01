@@ -1,4 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { PedidoContext } from "../Pedido/Pedido";
 import "./index.css";
 import {
   FaInstagram,
@@ -9,10 +11,14 @@ import {
   FaPlus,
   FaShoppingCart,
   FaBolt,
+  FaChevronDown,
 } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 export function AbaPrincipal() {
+  const navigate = useNavigate();
+  const { atualizarPedido } = useContext(PedidoContext);
+
   const produtos = {
     prod1: { nome: "Bananeira", tipo: "Frutífera", descricao: "Muda de bananeira saudável." },
     prod2: { nome: "Laranjeira", tipo: "Frutífera", descricao: "Muda de laranjeira doce." },
@@ -54,6 +60,7 @@ export function AbaPrincipal() {
     Object.keys(produtos).reduce((acc, id) => ({ ...acc, [id]: 1 }), {})
   );
   const [filtro, setFiltro] = useState("Todos");
+  const [carrinhoAberto, setCarrinhoAberto] = useState(false);
 
   const alterarQuantidade = (id, valor) => {
     setQuantidades(prev => ({ ...prev, [id]: Math.max(1, prev[id] + valor) }));
@@ -62,7 +69,6 @@ export function AbaPrincipal() {
   const adicionarAoCarrinho = (id) => {
     const qtd = quantidades[id];
     const preco = precos[id];
-
     setCarrinho(prev => {
       const existe = prev.find(item => item.id === id);
       if (existe) {
@@ -70,12 +76,8 @@ export function AbaPrincipal() {
       }
       return [...prev, { id, preco, quantidade: qtd }];
     });
-
     setQuantidades(prev => ({ ...prev, [id]: 1 }));
   };
-
-  const quantidadeTotal = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
-  const precoTotal = carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0);
 
   const diminuirQuantidadeCarrinho = (id) => {
     setCarrinho(prev =>
@@ -87,12 +89,12 @@ export function AbaPrincipal() {
   const removerItem = (id) => setCarrinho(prev => prev.filter(item => item.id !== id));
   const limparCarrinho = () => setCarrinho([]);
 
- 
   const finalizarPedido = () => {
-    if (window.confirm(`Deseja realmente finalizar o pedido de R$ ${precoTotal.toFixed(2)} (${quantidadeTotal} itens)?`)) {
-      alert("Pedido finalizado! Em breve será enviado via WhatsApp.");
-      setCarrinho([]);
-    }
+    atualizarPedido({
+      itens: carrinho,
+      total: carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
+    });
+    navigate("/cep");
   };
 
   const produtosFiltrados = Object.entries(produtos).filter(([id, prod]) => {
@@ -101,10 +103,10 @@ export function AbaPrincipal() {
   });
 
   return (
-    <div className={`container ${quantidadeTotal > 0 ? "com-carrinho" : ""}`}>
+    <div className="container">
       <header>
         <div className="cabecalho">
-          <img src="src/assets/e66b6fdbd5f365cefc42b9c4f4cb976eb0d9380e.png" alt="Logo" />
+          <img src={logo} alt="Logo" />
           <h1>Contatos</h1>
           <ul className="contatos-lista">
             <li><a href="https://www.instagram.com/lucianoplantas2" target="_blank" rel="noopener noreferrer" className="contato-link insta"><FaInstagram /> Instagram</a></li>
@@ -116,27 +118,17 @@ export function AbaPrincipal() {
           <ul>
             <li><Link to="/trabalho">Nosso Trabalho</Link></li>
             <li><Link to="/sobre">Sobre Nós</Link></li>
-            <li><Link to="/cep">Calcule seu Frete</Link></li>
-           
           </ul>
         </nav>
       </header>
 
       <main>
         <div className="main-header"><h1>Catálogo</h1></div>
-
         <div className="filtros">
-          {["Todos", "Frutífera", "Nativa", "Ornamental"].map(tipo => (
-            <button
-              key={tipo}
-              className={`btn-filtro ${filtro === tipo ? "ativo" : ""}`}
-              onClick={() => setFiltro(tipo)}
-            >
-              {tipo}
-            </button>
+          {["Todos","Frutífera","Nativa","Ornamental"].map(tipo => (
+            <button key={tipo} className={`btn-filtro ${filtro===tipo?"ativo":""}`} onClick={()=>setFiltro(tipo)}>{tipo}</button>
           ))}
         </div>
-
         <div className="produtos">
           {produtosFiltrados.map(([id, prod]) => (
             <div key={id} className="card">
@@ -146,41 +138,52 @@ export function AbaPrincipal() {
               <div className="card-preco">R$ {precos[id].toFixed(2)}</div>
               <div className="secao-compras">
                 <div className="controles-quantidade">
-                  <button onClick={() => alterarQuantidade(id, -1)}><FaMinus /></button>
-                  <input
-                    type="number"
-                    min="1"
-                    value={quantidades[id]}
-                    onChange={(e) => setQuantidades(prev => ({ ...prev, [id]: Math.max(1, parseInt(e.target.value) || 1) }))}
-                  />
-                  <button onClick={() => alterarQuantidade(id, 1)}><FaPlus /></button>
+                  <button onClick={()=>alterarQuantidade(id,-1)}><FaMinus/></button>
+                  <input type="number" min="1" value={quantidades[id]} onChange={e=>setQuantidades(prev=>({...prev,[id]:Math.max(1,parseInt(e.target.value)||1)}))}/>
+                  <button onClick={()=>alterarQuantidade(id,1)}><FaPlus/></button>
                 </div>
-                <button className="btn-adicionar" onClick={() => adicionarAoCarrinho(id)}><FaShoppingCart /> Adicionar</button>
+                <button className="btn-adicionar" onClick={()=>adicionarAoCarrinho(id)}><FaShoppingCart/> Adicionar</button>
               </div>
             </div>
           ))}
         </div>
+        {carrinho.length>0 && (
+          <aside className="carrinho-flutuante">
+            {!carrinhoAberto && (
+              <button className="btn-icone-carrinho" onClick={()=>setCarrinhoAberto(true)}>
+                <FaShoppingCart/>
+                {carrinho.reduce((acc,item)=>acc+item.quantidade,0)>0 && <span className="badge">{carrinho.reduce((acc,item)=>acc+item.quantidade,0)}</span>}
+              </button>
+            )}
+            {carrinhoAberto && (
+              <div className="carrinho-aberto">
+                <div className="carrinho-header">
+                  <h2>Carrinho ({carrinho.reduce((acc,item)=>acc+item.quantidade,0)} itens)</h2>
+                  <div className="carrinho-botoes-header">
+                    <button className="btn-toggle" onClick={()=>setCarrinhoAberto(false)}><FaChevronDown/></button>
+                    <button className="btn-lixo" onClick={limparCarrinho}><FaTrashAlt/></button>
+                  </div>
+                </div>
+                <ul>
+                  {carrinho.map(item=>(
+                    <li key={item.id} className="item-carrinho">
+                      <span>{produtos[item.id].nome}</span>
+                      <div className="acoes">
+                        <button onClick={()=>diminuirQuantidadeCarrinho(item.id)}><FaMinus/></button>
+                        <span>x{item.quantidade}</span>
+                        <button onClick={()=>removerItem(item.id)}><FaTrashAlt/></button>
+                      </div>
+                      <span>R$ {(item.preco*item.quantidade).toFixed(2)}</span>
+                    </li>
+                  ))}
+                </ul>
+                <div className="total">Total: R$ {carrinho.reduce((acc,item)=>acc+item.preco*item.quantidade,0).toFixed(2)}</div>
+                <button className="btn-comprar" onClick={finalizarPedido}><FaBolt/> Finalizar Pedido</button>
+              </div>
+            )}
+          </aside>
+        )}
       </main>
-
-      {quantidadeTotal > 0 && (
-        <aside className="carrinho-lateral">
-          <div className="carrinho-header">
-            <h2>Carrinho ({quantidadeTotal} itens)</h2>
-            <button className="btn-fechar" onClick={limparCarrinho}><FaTrashAlt /></button>
-          </div>
-          <ul>
-            {carrinho.map(item => (
-              <li key={item.id} className="item-carrinho">
-                {produtos[item.id].nome} (x{item.quantidade}) - R$ {(item.preco * item.quantidade).toFixed(2)}
-                <button onClick={() => diminuirQuantidadeCarrinho(item.id)}><FaMinus /></button>
-                <button onClick={() => removerItem(item.id)}><FaTrashAlt /></button>
-              </li>
-            ))}
-          </ul>
-          <div className="total">Total: R$ {precoTotal.toFixed(2)}</div>
-          <button className="btn-comprar" onClick={finalizarPedido}><FaBolt /> Finalizar Pedido</button>
-        </aside>
-      )}
     </div>
   );
 }
