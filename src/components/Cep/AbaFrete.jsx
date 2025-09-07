@@ -10,7 +10,6 @@ export function AbaFrete() {
   const [telefone, setTelefone] = useState("");
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState(null);
-  const [freteInfo, setFreteInfo] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -21,20 +20,45 @@ export function AbaFrete() {
   };
 
   const handleBuscarCep = async () => {
-    if(cep.length!==9){setError("CEP inválido");setEndereco(null);setFreteInfo(null);return;}
-    setLoading(true); setError(null); setEndereco(null); setFreteInfo(null);
+    if(cep.length !== 9){
+      setError("CEP inválido");
+      setEndereco(null);
+      return;
+    }
+    setLoading(true);
+    setError(null);
+    setEndereco(null);
+
     try{
       const resp = await fetch(`https://viacep.com.br/ws/${cep.replace('-','')}/json/`);
       const data = await resp.json();
-      if(data.erro){setError("CEP não encontrado"); setEndereco(null);}
-      else{setEndereco(data); simularCalculoFrete(data);}
-    } catch(err){setError("Não foi possível buscar o CEP");} 
-    finally{setLoading(false);}
+      if(data.erro){
+        setError("CEP não encontrado");
+        setEndereco(null);
+      } else {
+        setEndereco(data);
+      }
+    } catch(err){
+      setError("Não foi possível buscar o CEP");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    if(!endereco){alert("Busque um CEP válido antes de enviar");return;}
+    if(!endereco){
+      alert("Busque um CEP válido antes de enviar");
+      return;
+    }
+
+    // Validação simples de email
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if(!emailRegex.test(email)){
+      alert("Informe um email válido");
+      return;
+    }
+
     const dadosEnvio = {
       nome,
       email,
@@ -46,74 +70,71 @@ export function AbaFrete() {
       estado: endereco.uf,
       pedido
     };
-    const textoWhats = `Pedido de ${nome}:\n`+JSON.stringify(dadosEnvio,null,2);
+
+    const textoWhats = `Pedido de ${nome}:\n` + JSON.stringify(dadosEnvio, null, 2) +
+      `\n\n⚠️ O frete deve ser combinado por mensagem.`;
+
     const urlWhats = `https://wa.me/?text=${encodeURIComponent(textoWhats)}`;
     window.open(urlWhats,"_blank");
   };
 
-  const simularCalculoFrete = (enderecoData) => {
-    let valorFrete=15; let prazo=7;
-    const capitaisSudeste=["São Paulo","Rio de Janeiro","Belo Horizonte","Vitória"];
-    if(capitaisSudeste.includes(enderecoData.localidade)){valorFrete=10; prazo=3;}
-    setFreteInfo({valor:`R$ ${valorFrete.toFixed(2).replace('.',',')}`,prazo:`${prazo} dias úteis`});
-  };
-
   return (
-    <>
-      <div className="frete-container">
-        <h2>Dados para Entrega</h2>
-        <p className="frete-subtitulo">Preencha seus dados e CEP para calcularmos o frete.</p>
-        <form onSubmit={handleFormSubmit}>
+    <div className="frete-container">
+      <h2>Dados para Entrega</h2>
+      <p className="frete-subtitulo">Preencha seus dados e CEP para enviar o pedido.</p>
+      <form onSubmit={handleFormSubmit}>
+        <div className="form-group">
+          <label>Nome</label>
+          <input className="input-text" value={nome} onChange={e => setNome(e.target.value)} required/>
+        </div>
+        <div className="form-group">
+          <label>Email</label>
+          <input className="input-text" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
+        </div>
+        <div className="form-group">
+          <label>Telefone</label>
+          <input className="input-text" type="tel" value={telefone} onChange={e => setTelefone(e.target.value)} placeholder="(00) 00000-0000" required/>
+        </div>
+        <div className="form-group-cep">
+          <div className="cep-container">
+            <label>CEP</label>
+            <input className="input-cep" value={cep} onChange={handleCepChange} placeholder="00000-000" required/>
+          </div>
+          <button type="button" className="btn-buscar-cep" onClick={handleBuscarCep} disabled={loading}>
+            {loading ? "..." : "Buscar CEP"}
+          </button>
+        </div>
+        {error && <p className="mensagem-erro">{error}</p>}
+        <div className="form-group">
+          <label>Rua</label>
+          <input className="input-text" value={endereco?.logradouro || ""} readOnly/>
+        </div>
+        <div className="form-group">
+          <label>Bairro</label>
+          <input className="input-text" value={endereco?.bairro || ""} readOnly/>
+        </div>
+        <div className="form-grid-duplo">
           <div className="form-group">
-            <label>Nome</label>
-            <input className="input-text" value={nome} onChange={e=>setNome(e.target.value)} required/>
+            <label>Cidade</label>
+            <input className="input-text" value={endereco?.localidade || ""} readOnly/>
           </div>
           <div className="form-group">
-            <label>Email</label>
-            <input className="input-text" type="email" value={email} onChange={e=>setEmail(e.target.value)} required/>
+            <label>Estado</label>
+            <input className="input-text" value={endereco?.uf || ""} readOnly/>
           </div>
-          <div className="form-group">
-            <label>Telefone</label>
-            <input className="input-text" type="tel" value={telefone} onChange={e=>setTelefone(e.target.value)} placeholder="(00) 00000-0000" required/>
-          </div>
-          <div className="form-group-cep">
-            <div className="cep-container">
-              <label>CEP</label>
-              <input className="input-cep" value={cep} onChange={handleCepChange} placeholder="00000-000" required/>
-            </div>
-            <button type="button" className="btn-buscar-cep" onClick={handleBuscarCep} disabled={loading}>
-              {loading ? "..." : "Buscar CEP"}
-            </button>
-          </div>
-          {error && <p className="mensagem-erro">{error}</p>}
-          <div className="form-group">
-            <label>Rua</label>
-            <input className="input-text" value={endereco?.logradouro||""} readOnly/>
-          </div>
-          <div className="form-group">
-            <label>Bairro</label>
-            <input className="input-text" value={endereco?.bairro||""} readOnly/>
-          </div>
-          <div className="form-grid-duplo">
-            <div className="form-group">
-              <label>Cidade</label>
-              <input className="input-text" value={endereco?.localidade||""} readOnly/>
-            </div>
-            <div className="form-group">
-              <label>Estado</label>
-              <input className="input-text" value={endereco?.uf||""} readOnly/>
-            </div>
-          </div>
-          <button type="submit" className="btn-submit-form" disabled={!endereco}>Enviar Pedido</button>
-        </form>
-        {freteInfo && <div className="resultado-container">
-          <div className="frete-resultado">
-            <p><strong>Valor:</strong> {freteInfo.valor}</p>
-            <p><strong>Prazo estimado:</strong> {freteInfo.prazo}</p>
-          </div>
-        </div>}
+        </div>
+        <button type="submit" className="btn-submit-form" disabled={!endereco}>Enviar Pedido</button>
+      </form>
+
+      <div className="resultado-container">
+        <div className="frete-resultado">
+          <p style={{fontWeight:"bold", color:"#333"}}>
+            ⚠️ O frete deve ser combinado por mensagem.
+          </p>
+        </div>
       </div>
+
       <Link to="/"><button className="botao-inicio-fixo">Início</button></Link>
-    </>
+    </div>
   );
 }

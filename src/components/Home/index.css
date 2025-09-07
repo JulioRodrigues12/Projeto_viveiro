@@ -139,6 +139,31 @@ main h1 {
   color: white;
 }
 
+.barra-pesquisa {
+  flex: 1 1 250px;
+  min-width: 220px;
+  height: 40px;
+  padding: 0 14px;
+  border: 2px solid #2e7d32;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2e7d32;
+  outline: none;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  background-color: #fff;
+}
+
+.barra-pesquisa::placeholder {
+  color: #7aa57c;
+  font-weight: 600;
+}
+
+.barra-pesquisa:focus {
+  border-color: #1b5e20;
+  box-shadow: 0 0 0 4px rgba(46, 125, 50, 0.15);
+}
+
 .produtos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -155,6 +180,7 @@ main h1 {
   flex-direction: column;
   gap: 0.8rem;
   transition: transform 0.3s ease;
+  height: 100%;
 }
 
 .card:hover {
@@ -172,12 +198,14 @@ main h1 {
 .card h3 {
   color: #2e7d32;
   font-weight: 700;
+  word-break: break-word;
 }
 
 .card p {
   color: #555;
   font-size: 0.95rem;
   flex-grow: 1;
+  overflow: hidden;
 }
 
 .card-preco {
@@ -189,7 +217,7 @@ main h1 {
   display: flex;
   align-items: center;
   gap: 0.8rem;
-  margin-top: 1rem;
+  margin-top: auto;
   flex-wrap: wrap;
   justify-content: center;
 }
