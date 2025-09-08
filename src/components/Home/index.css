@@ -336,6 +336,7 @@ main h1 {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1rem;
+  font-size: 13px;
 }
 
 .carrinho-botoes-header {
@@ -376,39 +377,77 @@ main h1 {
 
 .item-carrinho {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 6px;
+  flex-direction: column;
+  gap: 0.5rem;
   margin: 0.5rem 0;
   font-weight: 600;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 0.5rem;
 }
 
-.item-carrinho .acoes {
+.item-carrinho-nome {
+  font-size: 1rem;
+  color: #333;
+  word-break: break-word;
+}
+
+.item-carrinho-info {
   display: flex;
-  gap: 4px;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.item-carrinho button {
+.item-carrinho-preco-quantidade {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.item-carrinho-preco {
+  font-weight: bold;
+  color: #1b5e20;
+  font-size: 1rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+
+.acoes button {
   width: 28px;
   height: 28px;
   border-radius: 50%;
   border: none;
   background: #2e7d32;
   color: #fff;
+  font-weight: bold;
   cursor: pointer;
 }
 
-.item-carrinho button:hover {
+.acoes button:hover {
   background: #1b5e20;
 }
 
+.acoes span {
+  min-width: 24px;
+  text-align: center;
+  font-weight: 600;
+  color: #2e7d32;
+}
+
 .total {
+  display: flex;
+  flex-direction: column;
   font-weight: 700;
   color: #2e7d32;
   border-top: 1px solid #ddd;
   font-size: 1.1rem;
   padding: 0.5rem 0;
-  text-align: right;
+  text-align: center;
+  gap: 8px;
 }
 
 .btn-comprar {
@@ -440,6 +479,14 @@ main h1 {
   font-weight: bold;
   text-align: center;
   box-shadow: 0 4px 10px rgba(46,125,50,0.3);
+}
+
+.desconto-disponivel {
+  background-color: lightgray;
+  border-radius: 10px;
+  color: #d32f2f;
+  font-weight: bold;
+  margin-left: 4px;
 }
 
 @media (max-width: 768px) {

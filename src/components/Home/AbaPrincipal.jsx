@@ -19,6 +19,7 @@ export function AbaPrincipal() {
   const navigate = useNavigate();
   const { atualizarPedido } = useContext(PedidoContext);
   const [pesquisa, setPesquisa] = useState("");
+
   const produtos = {
   
   // ================= FRUTÍFERAS =================
@@ -338,7 +339,7 @@ export function AbaPrincipal() {
           .filter(item => item.quantidade > 0)
     );
   };
-
+  const totalUnidades = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
   const removerItem = (id) => setCarrinho(prev => prev.filter(item => item.id !== id));
   const limparCarrinho = () => setCarrinho([]);
 
@@ -435,17 +436,27 @@ export function AbaPrincipal() {
                 <ul>
                   {carrinho.map(item=>(
                     <li key={item.id} className="item-carrinho">
-                      <span>{produtos[item.id].nome}</span>
-                      <div className="acoes">
-                        <button onClick={()=>diminuirQuantidadeCarrinho(item.id)}><FaMinus/></button>
-                        <span>x{item.quantidade}</span>
-                        <button onClick={()=>removerItem(item.id)}><FaTrashAlt/></button>
+                      <span className="item-carrinho-nome">{produtos[item.id].nome}</span>
+                  <div className="item-carrinho-info">
+                      <div className="item-carrinho-preco-quantidade">
+                          <span className="item-carrinho-preco">R$ {(item.preco * item.quantidade).toFixed(2)}</span>
+                        <div className="acoes">
+                         <button onClick={() => diminuirQuantidadeCarrinho(item.id)}><FaMinus /></button>
+                         <span>x{item.quantidade}</span>
+                         <button onClick={() => removerItem(item.id)}><FaTrashAlt /></button>
                       </div>
-                      <span>R$ {(item.preco*item.quantidade).toFixed(2)}</span>
-                    </li>
+                    </div>
+                  </div>
+                </li>
+
                   ))}
                 </ul>
-                <div className="total">Total: R$ {carrinho.reduce((acc,item)=>acc+item.preco*item.quantidade,0).toFixed(2)}</div>
+                <div className="total">
+                  Total: R$ {carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0).toFixed(2)}
+                          {totalUnidades >= 200 && (
+                              <span className="desconto-disponivel"> Desconto disponível !</span>
+                        )}
+                  </div>
                 <button className="btn-comprar" onClick={finalizarPedido}><FaBolt/> Finalizar Pedido</button>
               </div>
             )}
