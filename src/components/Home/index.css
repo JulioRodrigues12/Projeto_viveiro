@@ -32,28 +32,37 @@ header {
 
 .cabecalho {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 1rem;
 }
 
 .cabecalho img {
-  max-width: 120px;
+  max-width: 260px; /* Aumenta o tamanho da logo */
   height: auto;
 }
 
-.cabecalho h1 {
-  font-weight: 700;
+.cabecalho-contatos {
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.cabecalho-contatos h1 {
+  font-size: 1.8rem;
   color: #2e7d32;
-  margin-left: 10px;
+  margin: 0;
 }
 
 .contatos-lista {
   list-style: none;
   display: flex;
-  gap: 1.5rem;
+  gap: 1rem;
+  flex-wrap: wrap;
   align-items: center;
+  margin-right: 2rem;
 }
 
 .contato-link {
@@ -76,23 +85,32 @@ header {
 .contato-link.facebook { background: #1877F2; }
 .contato-link:hover { filter: brightness(1.1); }
 
-nav ul {
+nav {
   display: flex;
-  list-style: none;
-  gap: 2rem;
-  margin-top: 1rem;
+  justify-content: center;
+  margin-top: 1.5rem;
+  margin-right: 13rem;
 }
 
-nav ul li a {
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-links li a {
   text-decoration: none;
   color: #2e7d32;
   font-weight: bold;
-  padding: 5px 10px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 2px solid #2e7d32;
   transition: 0.3s;
 }
 
-nav ul li a:hover {
+.nav-links li a:hover {
   background: #2e7d32;
   color: white;
 }

@@ -192,6 +192,13 @@
   transform: translateY(-2px);
 }
 
+.mensagem-erro {
+  color: #e90f0f;
+  font-size: 0.9rem;
+  margin-top: 4px;
+  font-weight: 600;
+}
+
 @media (max-width: 768px) {
   .frete-container {
     padding: 2rem 1.5rem;

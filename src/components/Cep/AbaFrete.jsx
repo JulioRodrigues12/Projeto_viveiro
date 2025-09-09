@@ -7,7 +7,9 @@ export function AbaFrete() {
   const { pedido } = useContext(PedidoContext);
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
+  const [emailErro, setEmailErro] = useState("");
   const [telefone, setTelefone] = useState("");
+  const [telefoneErro, setTelefoneErro] = useState("");
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -45,6 +47,68 @@ export function AbaFrete() {
     }
   };
 
+  const validarEmail = () => {
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    setEmailErro("Por favor informe um email válido");
+    return;
+  }
+  setEmailErro(""); 
+  
+};
+
+
+
+const formatarTelefone = (valor) => {
+  const numeros = valor.replace(/\D/g, "").slice(0, 11); // Limita a 11 dígitos
+  if (numeros.length <= 2) return `(${numeros}`;
+  if (numeros.length <= 7) return `(${numeros.slice(0, 2)}) ${numeros.slice(2)}`;
+  return `(${numeros.slice(0, 2)}) ${numeros.slice(2, 7)}-${numeros.slice(7)}`;
+};
+
+const dddsValidos = [
+  "11","12","13","14","15","16","17","18","19", // SP
+  "21","22","24", // RJ
+  "27","28", // ES
+  "31","32","33","34","35","37","38", // MG
+  "41","42","43","44","45","46", // PR
+  "47","48","49", // SC
+  "51","53","54","55", // RS
+  "61", // DF
+  "62","64", // GO
+  "63", // TO
+  "65","66", // MT
+  "67", // MS
+  "68", // AC
+  "69", // RO
+  "71","73","74","75","77", // BA
+  "79", // SE
+  "81","87", // PE
+  "82", // AL
+  "83", // PB
+  "84", // RN
+  "85","88", // CE
+  "86","89", // PI
+  "91","93","94", // PA
+  "92","97", // AM
+  "95", // RR
+  "96", // AP
+  "98","99" // MA
+];
+
+const validarTelefone = () => {
+  const numeros = telefone.replace(/\D/g, "");
+  const ddd = numeros.slice(0, 2);
+  const telefoneRegex = /^\(?\d{2}\)?[\s-]?\d{4,5}-\d{4}$/;
+
+  if (!telefoneRegex.test(telefone) || !dddsValidos.includes(ddd)) {
+    setTelefoneErro("Informe um telefone válido com DDD brasileiro");
+  } else {
+    setTelefoneErro("");
+  }
+};
+
+
   const handleFormSubmit = (e) => {
     e.preventDefault();
     if(!endereco){
@@ -52,11 +116,14 @@ export function AbaFrete() {
       return;
     }
 
-    // Validação simples de email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if(!emailRegex.test(email)){
-      alert("Informe um email válido");
-      return;
+    if (!email || emailErro) {
+  setEmailErro("Informe um email válido");
+  return;
+    }
+
+if (!telefone || telefoneErro) {
+  setEmailErro("Informe um telefone válido com DDD");
+  return;
     }
 
     const dadosEnvio = {
@@ -71,8 +138,29 @@ export function AbaFrete() {
       pedido
     };
 
-    const textoWhats = `Pedido de ${nome}:\n` + JSON.stringify(dadosEnvio, null, 2) +
-      `\n\n⚠️ O frete deve ser combinado por mensagem.`;
+   const textoWhats = 
+`📦 *Pedido de ${dadosEnvio.nome}*
+
+👤 *Nome:* ${dadosEnvio.nome}
+📧 *Email:* ${dadosEnvio.email}
+📞 *Telefone:* ${dadosEnvio.telefone}
+
+📍 *Endereço:*
+• Rua: ${dadosEnvio.rua}
+• Bairro: ${dadosEnvio.bairro}
+• Cidade: ${dadosEnvio.cidade} - ${dadosEnvio.estado}
+• CEP: ${dadosEnvio.cep}
+
+🛒 *Itens do Pedido:*
+${dadosEnvio.pedido.itens.length > 0 
+  ? dadosEnvio.pedido.itens.map(item => `• ${item.nome} x${item.quantidade} - R$ ${item.preco.toFixed(2)}`).join('\n') 
+  : 'Nenhum item selecionado'}
+
+💰 *Total:* R$ ${dadosEnvio.pedido.total.toFixed(2)}
+
+⚠️ O frete deve ser combinado por mensagem.
+`;
+
 
     const urlWhats = `https://wa.me/?text=${encodeURIComponent(textoWhats)}`;
     window.open(urlWhats,"_blank");
@@ -89,11 +177,28 @@ export function AbaFrete() {
         </div>
         <div className="form-group">
           <label>Email</label>
-          <input className="input-text" type="email" value={email} onChange={e => setEmail(e.target.value)} required/>
+          <input
+    className="input-text"
+    type="email"
+    value={email}
+    onChange={e => setEmail(e.target.value)}
+    onBlur={validarEmail} // valida ao sair do campo
+    required
+  />
+          {emailErro && <p className="mensagem-erro">{emailErro}</p>}
         </div>
         <div className="form-group">
           <label>Telefone</label>
-          <input className="input-text" type="tel" value={telefone} onChange={e => setTelefone(e.target.value)} placeholder="(00) 00000-0000" required/>
+      <input
+  className="input-text"
+  type="tel"
+  value={telefone}
+  onChange={e => setTelefone(formatarTelefone(e.target.value))}
+  onBlur={validarTelefone}
+  placeholder="(00) 00000-0000"
+  required
+/>
+  {telefoneErro && <p className="mensagem-erro">{telefoneErro}</p>}
         </div>
         <div className="form-group-cep">
           <div className="cep-container">

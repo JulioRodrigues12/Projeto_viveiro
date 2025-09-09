@@ -364,22 +364,26 @@ export function AbaPrincipal() {
   return (
     <div className="container">
       <header>
-        <div className="cabecalho">
-          <img src={logo} alt="Logo" />
-          <h1>Contatos</h1>
-          <ul className="contatos-lista">
-            <li><a href="https://www.instagram.com/lucianoplantas2" target="_blank" rel="noopener noreferrer" className="contato-link insta"><FaInstagram /> Instagram</a></li>
-            <li><a href="mailto:seuemail@exemplo.com" className="contato-link email"><FaRegEnvelope /> Email</a></li>
-            <li><a href="https://www.facebook.com/share/15W5guHPr3/" target="_blank" rel="noopener noreferrer" className="contato-link facebook"><FaFacebookSquare /> Facebook</a></li>
-          </ul>
-        </div>
-        <nav>
-          <ul>
-            <li><Link to="/trabalho">Nosso Trabalho</Link></li>
-            <li><Link to="/sobre">Sobre Nós</Link></li>
-          </ul>
-        </nav>
-      </header>
+  <div className="cabecalho">
+    <img src={logo} alt="Logo" />
+    
+    <div className="cabecalho-contatos">
+      <h1>Contatos</h1>
+      <ul className="contatos-lista">
+        <li><a href="https://www.instagram.com/lucianoplantas2" target="_blank" rel="noopener noreferrer" className="contato-link insta"><FaInstagram /> Instagram</a></li>
+        <li><a href="mailto:seuemail@exemplo.com" className="contato-link email"><FaRegEnvelope /> Email</a></li>
+        <li><a href="https://www.facebook.com/share/15W5guHPr3/" target="_blank" rel="noopener noreferrer" className="contato-link facebook"><FaFacebookSquare /> Facebook</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <nav>
+    <ul className="nav-links">
+      <li><Link to="/trabalho">Nosso Trabalho</Link></li>
+      <li><Link to="/sobre">Sobre Nós</Link></li>
+    </ul>
+  </nav>
+</header>
 
       <main>
         <div className="main-header"><h1>Catálogo</h1></div>
