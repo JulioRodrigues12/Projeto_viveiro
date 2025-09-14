@@ -323,12 +323,18 @@ export function AbaPrincipal() {
   const adicionarAoCarrinho = (id) => {
     const qtd = quantidades[id];
     const preco = precos[id];
+    const produto = produtos[id];
     setCarrinho(prev => {
       const existe = prev.find(item => item.id === id);
       if (existe) {
         return prev.map(item => item.id === id ? { ...item, quantidade: item.quantidade + qtd } : item);
       }
-      return [...prev, { id, preco, quantidade: qtd }];
+      return [...prev, { 
+        id,
+        nome: produto.nome,
+      preco, 
+      quantidade: qtd
+     }];
     });
     setQuantidades(prev => ({ ...prev, [id]: 1 }));
   };
