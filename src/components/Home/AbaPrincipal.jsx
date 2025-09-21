@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PedidoContext } from "../Pedido/Pedido";
+import { ProductModal } from "./modal";
 import "./index.css";
 import {
   FaInstagram,
@@ -28,12 +29,12 @@ export function AbaPrincipal() {
   prod3: { nome: "Acerola Estaquia", tipo: "Frutífera", descricao: "Muda de acerola propagada por estaquia." },
   prod4: { nome: "Abil (Amarelo / Roxo)", tipo: "Frutífera", descricao: "Muda de Abil amarelo ou roxo." },
   prod5: { nome: "Abricó", tipo: "Frutífera", descricao: "Muda de Abricó." },
-  prod6: { nome: "Ameixa Preta (Enxerto)", tipo: "Frutífera", descricao: "Muda enxertada de ameixa preta." },
+  prod6: { nome: "Ameixa Preta Enxerto", tipo: "Frutífera", descricao: "Muda enxertada de ameixa preta." },
   prod7: { nome: "Amora Gigante", tipo: "Frutífera", descricao: "Muda de amora gigante." },
   prod8: { nome: "Araçá", tipo: "Frutífera", descricao: "Muda de araçá." },
   prod9: { nome: "Araticum", tipo: "Frutífera", descricao: "Muda de araticum." },
   prod10: { nome: "Atemóia", tipo: "Frutífera", descricao: "Muda de atemóia." },
-  prod11: { nome: "Bacupairi", tipo: "Frutífera", descricao: "Muda de bacupairi." },
+  prod11: { nome: "Bacupari", tipo: "Frutífera", descricao: "Muda de bacupari." },
   prod12: { nome: "Biriba", tipo: "Frutífera", descricao: "Muda de biriba." },
   prod13: { nome: "Cabeludinha", tipo: "Frutífera", descricao: "Muda de cabeludinha." },
   prod14: { nome: "Cacau", tipo: "Frutífera", descricao: "Muda de cacau." },
@@ -50,7 +51,7 @@ export function AbaPrincipal() {
   prod25: { nome: "Castanha do Pará", tipo: "Frutífera", descricao: "Muda de castanha do Pará." },
   prod26: { nome: "Castanha Portuguesa", tipo: "Frutífera", descricao: "Muda de castanha portuguesa." },
   prod27: { nome: "Cereja", tipo: "Frutífera", descricao: "Muda de cerejeira." },
-  prod28: { nome: "Ciriguela", tipo: "Frutífera", descricao: "Muda de ciriguela." },
+  prod28: { nome: "Siriguela", tipo: "Frutífera", descricao: "Muda de siriguela." },
   prod29: { nome: "Coco Sacolão (1,20 mt)", tipo: "Frutífera", descricao: "Muda de coco sacolão 1,20 mt." },
   prod30: { nome: "Coco Sacolão (1,80 mt)", tipo: "Frutífera", descricao: "Muda de coco sacolão 1,80 mt." },
   prod31: { nome: "Coco Sacolão (2,50 mts)", tipo: "Frutífera", descricao: "Muda de coco sacolão 2,50 mt." },
@@ -62,10 +63,10 @@ export function AbaPrincipal() {
   prod37: { nome: "Fruta Pão (Raiz)", tipo: "Frutífera", descricao: "Muda de fruta pão por raiz." },
   prod38: { nome: "Fruta Pão (Semente)", tipo: "Frutífera", descricao: "Muda de fruta pão por semente." },
   prod39: { nome: "Fruta do Conde", tipo: "Frutífera", descricao: "Muda de fruta do conde." },
-  prod40: { nome: "Gabiroba", tipo: "Frutífera", descricao: "Muda de gabiroba." },
+  prod40: { nome: "Guabiroba", tipo: "Frutífera", descricao: "Muda de guabiroba." },
   prod41: { nome: "Graviola", tipo: "Frutífera", descricao: "Muda de graviola." },
   prod42: { nome: "Graviola Sacolão Enxertada", tipo: "Frutífera", descricao: "Muda enxertada de graviola." },
-  prod43: { nome: "Goiaba Paloma", tipo: "Frutífera", descricao: "Muda de goiaba paloma." },
+  prod43: { nome: "Goiaba Paluma vermelha ", tipo: "Frutífera", descricao: "Muda de goiaba paluma vermelha." },
   prod44: { nome: "Goiaba Branca", tipo: "Frutífera", descricao: "Muda de goiaba branca." },
   prod45: { nome: "Goiaba Tailandesa", tipo: "Frutífera", descricao: "Muda de goiaba tailandesa." },
   prod46: { nome: "Groselha", tipo: "Frutífera", descricao: "Muda de groselha." },
@@ -77,7 +78,7 @@ export function AbaPrincipal() {
   prod52: { nome: "Jambolão", tipo: "Frutífera", descricao: "Muda de jambolão." },
   prod53: { nome: "Jatobá", tipo: "Frutífera", descricao: "Muda de jatobá." },
   prod54: { nome: "Jenipapo", tipo: "Frutífera", descricao: "Muda de jenipapo." },
-  prod55: { nome: "Kiwi (Enxerto)", tipo: "Frutífera", descricao: "Muda enxertada de kiwi." },
+  prod55: { nome: "Kiwi Enxerto", tipo: "Frutífera", descricao: "Muda enxertada de kiwi." },
   prod56: { nome: "Langonha", tipo: "Frutífera", descricao: "Muda de langonha." },
   prod57: { nome: "Lichia (Enxerto)", tipo: "Frutífera", descricao: "Muda enxertada de lichia." },
   prod58: { nome: "Lichia (Pé Franco)", tipo: "Frutífera", descricao: "Muda de lichia pé franco." },
@@ -104,13 +105,13 @@ export function AbaPrincipal() {
   prod79: { nome: "Pitangueira", tipo: "Frutífera", descricao: "Muda de pitanga." },
   prod80: { nome: "Pitomba", tipo: "Frutífera", descricao: "Muda de pitomba." },
   prod81: { nome: "Romã", tipo: "Frutífera", descricao: "Muda de romã." },
-  prod82: { nome: "Sapoti (Enxerto)", tipo: "Frutífera", descricao: "Muda enxertada de sapoti." },
+  prod82: { nome: "Sapoti Enxerto", tipo: "Frutífera", descricao: "Muda enxertada de sapoti." },
   prod83: { nome: "Urucum", tipo: "Frutífera", descricao: "Muda de urucum." },
   prod84: { nome: "Uva (Rubi/Itália/Niágara/Rosa/Branca)", tipo: "Frutífera", descricao: "Mudas de uva variadas." },
   prod85: { nome: "Uvaia", tipo: "Frutífera", descricao: "Muda de uvaia." },
 
   // ================= ORNAMENTAIS =================
-  prod86: { nome: "Akesuoria", tipo: "Ornamental", descricao: "Planta ornamental Akesuoria." },
+  prod86: { nome: "Ixória", tipo: "Ornamental", descricao: "Planta ornamental Ixória." },
   prod87: { nome: "Alamandra (Amarela/Vermelha)", tipo: "Ornamental", descricao: "Planta ornamental Alamandra amarela ou vermelha." },
   prod88: { nome: "Azaleia", tipo: "Ornamental", descricao: "Planta ornamental Azaleia." },
   prod89: { nome: "Bico de Papagaio", tipo: "Ornamental", descricao: "Planta ornamental Bico de Papagaio." },
@@ -204,7 +205,7 @@ export function AbaPrincipal() {
   prod176: { nome: "Farinha Seca", tipo: "Nativa", descricao: "Muda de Farinha Seca." },
   prod177: { nome: "Garapá", tipo: "Nativa", descricao: "Muda de Garapá." },
   prod178: { nome: "Guabiroba", tipo: "Nativa", descricao: "Muda de Guabiroba." },
-  prod179: { nome: "Grumichama", tipo: "Nativa", descricao: "Muda de Grumichama." },
+  prod179: { nome: "Grumixama", tipo: "Nativa", descricao: "Muda de Grumixama." },
   prod180: { nome: "Guapuruvu", tipo: "Nativa", descricao: "Muda de Guapuruvu." },
   prod181: { nome: "Guanandi", tipo: "Nativa", descricao: "Muda de Guanandi." },
   prod182: { nome: "Imbaúba", tipo: "Nativa", descricao: "Muda de Imbaúba." },
@@ -294,25 +295,56 @@ export function AbaPrincipal() {
   prod216: 20, prod217: 20, prod218: 20,
   };
 
-  const imagens = {
-    prod1: "https://picsum.photos/id/1011/260/160",
-    prod2: "https://picsum.photos/id/1012/260/160",
-    prod3: "https://picsum.photos/id/1013/260/160",
-    prod4: "https://picsum.photos/id/1015/260/160",
-    prod5: "https://picsum.photos/id/1016/260/160",
-    prod6: "https://picsum.photos/id/1018/260/160",
-    prod7: "https://picsum.photos/id/1020/260/160",
-    prod8: "https://picsum.photos/id/1021/260/160",
-    prod9: "https://picsum.photos/id/1022/260/160",
-    prod10: "https://picsum.photos/id/1023/260/160",
-    prod11: "https://picsum.photos/id/1024/260/160",
-    prod12: "https://picsum.photos/id/1025/260/160",
-  };
+function getNormalizedFileName(productName) {
+  return productName
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "");
+}
+
+const imageModules = import.meta.glob('../../assets/imagens/*.{png,jpg,jpeg,svg}', { eager: true });
+
+function getImageFromFileName(fileName) {
+    const filePath = `../../assets/imagens/${fileName}`;
+    return imageModules[filePath]?.default || null;
+}
+// Função para mapear o nome do arquivo para a URL da imagem
+const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
+    // Usa a nova função para criar o nome do arquivo a partir do nome do produto.
+    const imageName = getNormalizedFileName(prod.nome) + '.jpg'; 
+    const imageUrl = getImageFromFileName(imageName);
+
+    return {
+        ...prod,
+        id,
+        preco: precos[id],
+        imageUrl: imageUrl // Adiciona a URL da imagem ao objeto
+    };
+});
+
 
   const [carrinho, setCarrinho] = useState([]);
   const [quantidades, setQuantidades] = useState(
     Object.keys(produtos).reduce((acc, id) => ({ ...acc, [id]: 1 }), {})
   );
+
+   const [isModalOpen, setIsModalOpen] = useState(false);
+   const [selectedProduct, setSelectedProduct] = useState(null);
+
+    const handleOpenModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+};
+
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedProduct(null);
+    };
+
+
   const [filtro, setFiltro] = useState("Todos");
   const [carrinhoAberto, setCarrinhoAberto] = useState(false);
 
@@ -357,7 +389,7 @@ export function AbaPrincipal() {
     navigate("/cep");
   };
 
-  const produtosFiltrados = Object.entries(produtos).filter(([id, prod]) => {
+  const produtosFiltrados = produtosCompletos.filter(prod => {
   const passaTipo = filtro === "Todos" || prod.tipo === filtro;
   const termo = pesquisa.trim().toLowerCase();
   const passaTexto =
@@ -409,23 +441,25 @@ export function AbaPrincipal() {
         
         
         <div className="produtos">
-          {produtosFiltrados.map(([id, prod]) => (
-            <div key={id} className="card">
-              <img src={imagens[id]} alt={prod.nome} className="card-imagem" />
+          {produtosFiltrados.map(prod => (
+            <div key={prod.id} className="card">
+              
+              <img src={prod.imageUrl} alt={prod.nome} className="card-imagem"onClick={() => handleOpenModal( prod )}/>
               <h3>{prod.nome}</h3>
               <p>{prod.descricao}</p>
-              <div className="card-preco">R$ {precos[id].toFixed(2)}</div>
+              <div className="card-preco">R$ {prod.preco.toFixed(2)}</div>
               <div className="secao-compras">
                 <div className="controles-quantidade">
-                  <button onClick={()=>alterarQuantidade(id,-1)}><FaMinus/></button>
-                  <input type="number" min="1" value={quantidades[id]} onChange={e=>setQuantidades(prev=>({...prev,[id]:Math.max(1,parseInt(e.target.value)||1)}))}/>
-                  <button onClick={()=>alterarQuantidade(id,1)}><FaPlus/></button>
+                  <button onClick={()=>alterarQuantidade(prod.id,-1)}><FaMinus/></button>
+                  <input type="number" min="1" value={quantidades[prod.id]} onChange={e=>setQuantidades(prev=>({...prev,[prod.id]:Math.max(1,parseInt(e.target.value)||1)}))}/>
+                  <button onClick={()=>alterarQuantidade(prod.id,1)}><FaPlus/></button>
                 </div>
-                <button className="btn-adicionar" onClick={()=>adicionarAoCarrinho(id)}><FaShoppingCart/> Adicionar</button>
+                <button className="btn-adicionar" onClick={()=>adicionarAoCarrinho(prod.id)}><FaShoppingCart/> Adicionar</button>
               </div>
             </div>
           ))}
         </div>
+        <ProductModal isOpen={isModalOpen} product={selectedProduct} onClose={handleCloseModal}/>
         {carrinho.length>0 && (
           <aside className="carrinho-flutuante">
             {!carrinhoAberto && (
