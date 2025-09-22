@@ -7,12 +7,12 @@ export function NossoTrabalho() {
   const projetos = [
     {
       titulo: 'Processo de Criação das Mudas',
-      descricao: 'Em nossa empresa prezamos o cuidado na criação das mudas tratando sempre de saber o melhor ambiente e também os melhores produtos para garantir a saude da planta, e também ajudamos nossos clientes no processo de cuidado com sua planta, sempre a disposição para atender suas necessidades.',
+      descricao: 'Em nossa empresa prezamos o cuidado na criação das mudas  tratando sempre de saber o melhor ambiente e também os melhores produtos para garantir a saude da planta, e também ajudamos nossos clientes no processo de cuidado com sua planta, sempre a disposição para atender suas necessidades.',
         media: [
         { tipo: 'imagem', src: './src/assets/maos-segurando-uma-mudinha-com-terra.jpg', alt: 'Varanda de apartamento exuberante com muitas plantas' },
         { tipo: 'imagem', src: './src/assets/alto-angulo-plantas-pretas-potes.jpg', alt: 'Close-up de uma folha de Costela-de-Adão saudável' }
       ],
-      resultado: 'Nosso viveiro ja conta com centenas de mudas de vários tipos e tambêm o apoio de vários clientes e patrocinadores que garantem nossa qualidade.'
+      resultado: 'Nosso viveiro ja conta com centenas de mudas de vários tipos .'
     },
     {
       titulo: 'Entregas realizadas e certificação de eficiência',
@@ -30,7 +30,7 @@ export function NossoTrabalho() {
         { tipo: 'imagem', src: './src/assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg', alt: 'Crianças e adultos plantando mudas na horta comunitária' },
         { tipo: 'imagem', src: './src/assets/maos-segurando-uma-mudinha-com-terra.jpg', alt: 'Moradores sorrindo com a primeira colheita de vegetais frescos' }
       ],
-      resultado: 'Em 2 anos nossa empresa alcançou marcas não antes vistas com um aumento de 30% em nossas vendas e conseguindo expandir nosso négocio para abranger mais produtos e outras localidades.'
+      resultado: 'Em 2 anos nossa empresa alcançou marcas não antes vistas com um aumento de 30% em nossas vendas. Por isso estamos deixando tudo mais moderno com o lancamento do noss site , para facilitar seu contato conosco'
     }
   ];
   return (

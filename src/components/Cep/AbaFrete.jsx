@@ -141,28 +141,28 @@ if (!telefone || telefoneErro) {
    const textoWhats = 
 `📦 *Pedido de ${dadosEnvio.nome}*
 
-👤 *Nome:* ${dadosEnvio.nome}
-📧 *Email:* ${dadosEnvio.email}
-📞 *Telefone:* ${dadosEnvio.telefone}
+ *Nome:* ${dadosEnvio.nome}
+ *Email:* ${dadosEnvio.email}
+ *Telefone:* ${dadosEnvio.telefone}
 
-📍 *Endereço:*
+ *Endereço:*
 • Rua: ${dadosEnvio.rua}
 • Bairro: ${dadosEnvio.bairro}
 • Cidade: ${dadosEnvio.cidade} - ${dadosEnvio.estado}
 • CEP: ${dadosEnvio.cep}
 
-🛒 *Itens do Pedido:*
+ *Itens do Pedido:*
 ${dadosEnvio.pedido.itens.length > 0 
   ? dadosEnvio.pedido.itens.map(item => `• ${item.nome} x${item.quantidade} - R$ ${item.preco.toFixed(2)}`).join('\n') 
   : 'Nenhum item selecionado'}
 
-💰 *Total:* R$ ${dadosEnvio.pedido.total.toFixed(2)}
+ $ *Total:* R$ ${dadosEnvio.pedido.total.toFixed(2)}
 
-⚠️ O frete deve ser combinado por mensagem.
+! O frete deve ser combinado por mensagem.
 `;
 
 
-    const urlWhats = `https://wa.me/?text=${encodeURIComponent(textoWhats)}`;
+    const urlWhats = `https://wa.me/5532984586277/?text=${encodeURIComponent(textoWhats)}`;
     window.open(urlWhats,"_blank");
   };
 
