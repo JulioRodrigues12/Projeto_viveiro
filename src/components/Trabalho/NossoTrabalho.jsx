@@ -30,7 +30,7 @@ export function NossoTrabalho() {
         { tipo: 'imagem', src: './src/assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg', alt: 'Crianças e adultos plantando mudas na horta comunitária' },
         { tipo: 'imagem', src: './src/assets/maos-segurando-uma-mudinha-com-terra.jpg', alt: 'Moradores sorrindo com a primeira colheita de vegetais frescos' }
       ],
-      resultado: 'Em 2 anos nossa empresa alcançou marcas não antes vistas com um aumento de 30% em nossas vendas. Por isso estamos deixando tudo mais moderno com o lancamento do noss site , para facilitar seu contato conosco'
+      resultado: 'Em 2 anos nossa empresa alcançou marcas não antes vistas com um aumento de 30% em nossas vendas. Por isso estamos deixando tudo mais moderno com o lançamento do noss site , para facilitar seu contato conosco'
     }
   ];
   return (
