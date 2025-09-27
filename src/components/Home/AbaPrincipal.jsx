@@ -40,7 +40,7 @@ export function AbaPrincipal() {
   prod14: { nome: "Cacau", tipo: "Frutífera", descricao: "Muda de cacau." },
   prod15: { nome: "Cagaita", tipo: "Frutífera", descricao: "Muda de cagaita." },
   prod16: { nome: "Caja Manga", tipo: "Frutífera", descricao: "Muda de caja manga." },
-  prod17: { nome: "Caja Mirim (Produzindo)", tipo: "Frutífera", descricao: "Muda de caja mirim produzindo." },
+  prod17: { nome: "Caja Mirim", tipo: "Frutífera", descricao: "Muda de caja mirim produzindo." },
   prod18: { nome: "Caju", tipo: "Frutífera", descricao: "Muda de cajueiro." },
   prod19: { nome: "Caju Produzindo", tipo: "Frutífera", descricao: "Cajueiro já produzindo." },
   prod20: { nome: "Camomila", tipo: "Frutífera", descricao: "Muda de camomila." },
