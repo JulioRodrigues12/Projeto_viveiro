@@ -122,7 +122,7 @@ const validarTelefone = () => {
     }
 
 if (!telefone || telefoneErro) {
-  setEmailErro("Informe um telefone válido com DDD");
+  setTelefoneErro("Informe um telefone válido com DDD brasileiro");
   return;
     }
 
