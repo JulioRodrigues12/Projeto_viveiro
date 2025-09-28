@@ -310,9 +310,9 @@ function getImageFromFileName(fileName) {
     const filePath = `../../assets/imagens/${fileName}`;
     return imageModules[filePath]?.default || null;
 }
-// Função para mapear o nome do arquivo para a URL da imagem
+
 const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
-    // Usa a nova função para criar o nome do arquivo a partir do nome do produto.
+  
     const imageName = getNormalizedFileName(prod.nome) + '.jpg'; 
     const imageUrl = getImageFromFileName(imageName);
 
@@ -320,7 +320,7 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
         ...prod,
         id,
         preco: precos[id],
-        imageUrl: imageUrl // Adiciona a URL da imagem ao objeto
+        imageUrl: imageUrl 
     };
 });
 
@@ -409,7 +409,7 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
       <h1>Contatos</h1>
       <ul className="contatos-lista">
         <li><a href="https://www.instagram.com/lucianoplantas2" target="_blank" rel="noopener noreferrer" className="contato-link insta"><FaInstagram /> Instagram</a></li>
-        <li><a href="mailto:seuemail@exemplo.com" className="contato-link email"><FaRegEnvelope /> Email</a></li>
+        <li><a href="mailto:viveirosassoerodrigues@gmail.com" className="contato-link email"><FaRegEnvelope /> Email</a></li>
         <li><a href="https://www.facebook.com/share/15W5guHPr3/" target="_blank" rel="noopener noreferrer" className="contato-link facebook"><FaFacebookSquare /> Facebook</a></li>
       </ul>
     </div>
@@ -424,7 +424,7 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
 <div className="aviso-importante">
     <span className="aviso-icone">⚠️</span>
     <p>
-        Aviso: este site serve <strong> apenas para visualizar o catálogo de mudas e fazer o pedido.</strong> 
+        Aviso: Este site serve <strong> apenas para visualizar o catálogo de mudas e fazer o pedido que será enviado ao nosso WhatsApp.</strong> 
         Não há nenhum tipo de <strong>compra ou transação de pagamento através do site!</strong> 
     </p>
 </div>
