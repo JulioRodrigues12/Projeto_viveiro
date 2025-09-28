@@ -421,6 +421,13 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
       <li><Link to="/sobre">Sobre Nós</Link></li>
     </ul>
   </nav>
+<div className="aviso-importante">
+    <span className="aviso-icone">⚠️</span>
+    <p>
+        Aviso: este site serve <strong> apenas para visualizar o catálogo de mudas e fazer o pedido.</strong> 
+        Não há nenhum tipo de <strong>compra ou transação de pagamento através do site!</strong> 
+    </p>
+</div>
 </header>
 
       <main>

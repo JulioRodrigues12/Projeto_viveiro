@@ -564,6 +564,62 @@ main h1 {
     color: #28a745;
 }
 
+
+.aviso-importante {
+   
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    
+
+    background-color: #ffeaea;
+    border: 1px solid #d32f2f; 
+    border-left: 6px solid #d32f2f; 
+    color: #333;
+    
+ 
+    padding: 15px 20px;
+    margin: 20px auto; 
+    max-width: 90%; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(211, 47, 47, 0.15); 
+    
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.aviso-importante p {
+    margin: 0;
+}
+
+
+.aviso-icone {
+    font-size: 24px;
+    line-height: 1;
+    color: #d32f2f; 
+    flex-shrink: 0;
+}
+
+
+.aviso-importante strong {
+    
+    color: #1b5e20; 
+    font-weight: 700;
+}
+
+
+@media (max-width: 600px) {
+    .aviso-importante {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    .aviso-icone {
+        margin-bottom: 5px;
+    }
+}
+
 @keyframes fadeIn {
     from {
         opacity: 0;
