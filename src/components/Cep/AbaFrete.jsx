@@ -126,14 +126,9 @@ export function AbaFrete() {
       return;
     }
 
-    if (!telefone || telefoneErro) {
-      setTelefoneErro("Informe um telefone válido com DDD");
-      return;
-    }
-
-    if (!numeroCasa) {
-      alert("Informe o número da sua casa");
-      return;
+if (!telefone || telefoneErro) {
+  setTelefoneErro("Informe um telefone válido com DDD brasileiro");
+  return;
     }
 
     const dadosEnvio = {

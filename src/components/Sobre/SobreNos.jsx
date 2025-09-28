@@ -1,12 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SobreNos.css';
-
+import { FeedbackModal } from './feedbackModal'
 export function SobreNos() {
   const missaoRef = useRef(null);
   const visaoRef = useRef(null);
   const valoresRef = useRef(null);
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
   useEffect(() => {
     const observerOptions = {
       root: null,
@@ -130,14 +133,22 @@ export function SobreNos() {
 
         <section className="cta-sobre">
           <h2>Gostou do que viu?</h2>
-          <p>Entre em contato conosco e descubra como podemos ajudar seu negócio.</p>
-          <button className="cta-button">Fale Conosco</button>
+          <p>Nos dê sua opinião sobre o site e como podemos melhorar sua experiência.</p>
+          <button className="cta-button" onClick={openModal}>Fale Conosco</button>
+
+          
         </section>
       </div>
 
       <Link to="/">
         <button className="botao-inicio-fixo">Início</button>
       </Link>
+
+      <FeedbackModal 
+            isOpen={isModalOpen} 
+            onClose={closeModal} 
+            recipientEmail="rodriguesjulio635@gmail.com" // Não esqueça de trocar!
+          />
     </>
   );
 }
