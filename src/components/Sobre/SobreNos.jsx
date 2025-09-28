@@ -62,8 +62,8 @@ export function SobreNos() {
               </ul>
             </div>
             <div className="coluna-galeria-mvv">
-              <img src="./src/assets/maos-segurando-uma-mudinha-com-terra.jpg" alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
-              <img src="./src/assets/alto-angulo-plantas-pretas-potes.jpg" alt="Viveiro com mudas saudáveis" className="imagem-galeria" />
+              <img src="./src/assets/segurando-muda.jpeg" alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
+              <img src="./src/assets/potes-de-mudas.jpg" alt="Viveiro com mudas saudáveis" className="imagem-galeria" />
             </div>
           </div>
         </section>
@@ -116,18 +116,14 @@ export function SobreNos() {
               <div className="card-valor">
                 <div className="icone-valor">🌎</div>
                 <h4>Cultivo Sustentável</h4>
-                <p>Respeitamos o ciclo da natureza, adotando práticas responsáveis para que nosso crescimento ande de mãos dadas com a saúde do planeta.</p>
+                <p>Respeitamos o ciclo da natureza, adotando práticas responsáveis para que nosso crescimento não seja nocivo para o planeta.</p>
               </div>
               <div className="card-valor">
                 <div className="icone-valor">🤝</div>
                 <h4>Comunidade Verde</h4>
-                <p>Estamos aqui para compartilhar conhecimento, tirar dúvidas e crescer junto com nossa comunidade de amantes da natureza.</p>
+                <p>Estamos aqui para compartilhar conhecimento,tirar dúvidas para o melhor desenvolvimento da muda.</p>
               </div>
-              <div className="card-valor">
-                <div className="icone-valor">✨</div>
-                <h4>Transparência Floresce</h4>
-                <p>Somos abertos sobre nossos processos para que você tenha total confiança na origem da sua nova planta.</p>
-              </div>
+              
             </div>
           </div>
         </section>

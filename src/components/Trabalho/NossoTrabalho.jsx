@@ -9,8 +9,10 @@ export function NossoTrabalho() {
       titulo: 'Processo de Criação das Mudas',
       descricao: 'Em nossa empresa prezamos o cuidado na criação das mudas  tratando sempre de saber o melhor ambiente e também os melhores produtos para garantir a saude da planta, e também ajudamos nossos clientes no processo de cuidado com sua planta, sempre a disposição para atender suas necessidades.',
         media: [
-        { tipo: 'imagem', src: './src/assets/maos-segurando-uma-mudinha-com-terra.jpg', alt: 'Varanda de apartamento exuberante com muitas plantas' },
-        { tipo: 'imagem', src: './src/assets/alto-angulo-plantas-pretas-potes.jpg', alt: 'Close-up de uma folha de Costela-de-Adão saudável' }
+        { tipo: 'imagem', src: './src/assets/criacao-de-mudas1.jpeg', alt: 'Processo de cuidado das mudas' },
+        { tipo: 'imagem', src: './src/assets/criacao-de-mudas2.jpeg', alt: 'Processo de criação de mudas' },
+        { tipo: 'imagem', src: './src/assets/criacao-de-mudas3.jpeg', alt: 'Processo de criação de mudas' },
+        { tipo: 'imagem', src: './src/assets/criacao-de-mudas5.jpeg', alt: 'Processo de criação de mudas' }
       ],
       resultado: 'Nosso viveiro ja conta com centenas de mudas de vários tipos .'
     },
@@ -18,17 +20,21 @@ export function NossoTrabalho() {
       titulo: 'Entregas realizadas e certificação de eficiência',
       descricao: 'Já realizamos diversas entregas por toda Cataguases e região desde projetos menores até grandes proporções sempre buscando garantir a qualidade da entrega e sua eficiência a nossos clientes.',
       media: [
-        { tipo: 'imagem', src: './src/assets/plantas-de-interior-em-estudio.jpg', alt: 'Escritório moderno com diversas plantas nos ambientes' },
-        { tipo: 'video', src: 'https://www.youtube.com/embed/3JZ_D3ELwOQ', alt: 'Vídeo mostrando o ambiente do escritório com as plantas' } // Exemplo de vídeo
+        { tipo: 'imagem', src: './src/assets/entrega-de-mudas3.jpeg', alt: 'Mudas entregues' },
+        { tipo: 'video', src: 'https://www.youtube.com/embed/QcsT3qddr8Q', alt: 'Vídeo mostrando nossas modas e uma entrega sendo feita' },
+        { tipo: 'imagem', src: './src/assets/criacao-de-mudas4.jpeg', alt: 'Processo de criação de mudas' },
+        { tipo: 'imagem', src: './src/assets/entrega-de-mudas1.jpeg', alt: 'Mudas entregues' },
       ],
       resultado: 'Diversos clientes atestam e confirmam nosso comprometimento e qualidade na entrega e nosso pronto atendimento a resolver quaisquer problemas em nossa logística.'
     },
     {
-      titulo: 'Conquistas e a importância dos nossos clientes em nossa empresa',
-      descricao: 'Com anos no mercado, nossa empresa celebra nossas conquistas mais importântes em nossa jornada, o que não seria possivel sem o apoio de nossos clientes e equipe que nos ajudam a fortalecer nossa marca e bater nossas metas.',
+      titulo: 'Modernizando nosso empreendimento',
+      descricao: 'Estamos modernizando nosso empreendimento de mudas para oferecer a você mais praticidade, qualidade e confiança. Agora, além do cultivo sustentável, contamos com um site moderno para facilitar sua experiência na hora de conhecer e adquirir nossas mudas.".',
       media: [
-        { tipo: 'imagem', src: './src/assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg', alt: 'Crianças e adultos plantando mudas na horta comunitária' },
-        { tipo: 'imagem', src: './src/assets/maos-segurando-uma-mudinha-com-terra.jpg', alt: 'Moradores sorrindo com a primeira colheita de vegetais frescos' }
+        { tipo: 'imagem', src: './src/assets/code-site.jpeg', alt: 'Código do site ' },
+        { tipo: 'imagem', src: './src/assets/mao-com-celular.jpeg', alt: 'Site no celular' },
+        { tipo: 'imagem', src: './src/assets/viveiro-tec.jpg', alt: 'Tecnologia no Viveiro' },
+        { tipo: 'imagem', src: './src/assets/tela-com-site.jpeg', alt: 'Site no PC' }
       ],
       resultado: 'Em 2 anos nossa empresa alcançou marcas não antes vistas com um aumento de 30% em nossas vendas. Por isso estamos deixando tudo mais moderno com o lançamento do noss site , para facilitar seu contato conosco'
     }

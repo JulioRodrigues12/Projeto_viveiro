@@ -40,7 +40,7 @@ header {
 }
 
 .cabecalho img {
-  max-width: 260px; /* Aumenta o tamanho da logo */
+  max-width: 260px; 
   height: auto;
 }
 
