@@ -88,8 +88,8 @@ header {
 nav {
   display: flex;
   justify-content: center;
-  margin-top: 1.5rem;
-  margin-right: 13rem;
+  /* margin-top: 1.5rem;
+  margin-right: 13rem; */
 }
 
 .nav-links {
