@@ -3,9 +3,9 @@
   --cor-primaria: #2A6F47;
   --cor-secundaria: #4CAF50;
   --cor-fundo: #f8f9fa;
-  --cor-texto: #333333;
-  --cor-texto-secundario: #666;
-  --cor-branco: #ffffff;
+  --cor-texto: #0c0c0c;
+  --cor-texto-secundario: #0c0c0c;
+  --cor-branco:  rgba(255, 255, 255, 0.70);
   --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -30,7 +30,7 @@
 
 .subtitulo-pagina {
   font-size: 1.2rem;
-  color: var(--cor-texto-secundario);
+  color: #e2e1e1;
   max-width: 700px;
   margin: 0 auto;
 }
@@ -42,7 +42,7 @@
 }
 
 .card-projeto {
-  background-color: var(--cor-branco);
+  background-color:  rgba(255, 255, 255, 0.75);
   border-radius: 12px;
   box-shadow: var(--sombra-padrao);
   overflow: hidden;
@@ -128,25 +128,86 @@
 
 
 @media (max-width: 992px) {
-  .card-projeto,
-  .card-projeto:nth-child(even) {
+    .card-projeto,
+    .card-projeto:nth-child(even) {
+        grid-template-columns: 1fr;
+        
+        gap: 1.5rem; 
+        padding: 2rem;
+    }
+    .card-projeto:nth-child(even) .conteudo-projeto {
+        order: 0; 
+    }
+    .media-galeria {
+        gap: 0.8rem;
+    }
+}
+@media (max-width: 768px) {
+    .titulo {
+        font-size: 2.2rem;
+    }
+    .subtitulo-pagina {
+        font-size: 1rem;
+        padding: 0 10px; 
+    }
+    
+    .pagina-trabalho {
+        margin: 1rem auto; 
+        width: 95%; 
+    }
+    
+    .card-projeto {
+        padding: 1.5rem; 
+    }
 
-    grid-template-columns: 1fr;
-  }
+    .titulo-projeto {
+        font-size: 1.6rem;
+    }
 
-  .card-projeto:nth-child(even) .conteudo-projeto {
-    order: 0; 
-  }
+    .media-galeria {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 0.5rem;
+    }
 }
 
-@media (max-width: 768px) {
-  .titulo {
-    font-size: 2.2rem;
-  }
-  .subtitulo-pagina {
-    font-size: 1rem;
-  }
-  .card-projeto {
-    padding: 1.5rem;
-  }
+@media (max-width: 480px) {
+    .titulo {
+        font-size: 1.8rem; 
+    }
+    .subtitulo-pagina {
+        font-size: 0.9rem; 
+    }
+    
+   
+    .portfolio-container {
+        gap: 2rem; 
+    }
+
+    .card-projeto {
+        padding: 1rem; 
+        box-shadow: none;
+        border: 1px solid #eee; 
+    }
+
+    .titulo-projeto {
+        font-size: 1.4rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .descricao-projeto {
+        margin-bottom: 1rem; 
+    }
+    
+    
+    .media-galeria {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 0.5rem;
+    }
+  
+    .botao-inicio-fixo {
+        top: 10px;
+        left: 10px;
+        padding: 8px 12px;
+        font-size: 0.9rem;
+    }
 }
