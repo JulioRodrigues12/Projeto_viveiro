@@ -608,6 +608,49 @@ main h1 {
     font-weight: 700;
 }
 
+.aviso-desconto {
+   
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    
+    
+    background-color: #f1fff1; 
+    border: 1px solid #2e7d32;
+    border-left: 6px solid #2e7d32; 
+    color: #333;
+    
+    
+    padding: 15px 20px;
+    margin: 20px auto; 
+    max-width: 90%; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); 
+    
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+
+.aviso-icone-desconto {
+    font-size: 24px;
+    line-height: 1;
+    color: #2e7d32; 
+    flex-shrink: 0;
+}
+
+
+.aviso-desconto p {
+    margin: 0;
+}
+
+
+.aviso-desconto strong {
+   
+    color: #1b5e20; 
+    font-weight: 700;
+}
+
 
 @media (max-width: 600px) {
     .aviso-importante {
@@ -616,6 +659,15 @@ main h1 {
         gap: 5px;
     }
     .aviso-icone {
+        margin-bottom: 5px;
+    }
+
+    .aviso-desconto {
+        flex-direction: column;
+        text-align: center;
+        gap: 5px;
+    }
+    .aviso-icone-desconto {
         margin-bottom: 5px;
     }
 }

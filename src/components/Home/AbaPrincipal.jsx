@@ -425,8 +425,16 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
     <span className="aviso-icone">⚠️</span>
     <p>
         Aviso: este site serve <strong> apenas para visualizar o catálogo de mudas e fazer o pedido.</strong> 
-        Não há nenhum tipo de <strong>compra ou transação de pagamento através do site!</strong> 
+        Não há nenhum tipo de <strong>compra ou transação de pagamento</strong> através do site!
     </p>
+</div>
+
+<div className="aviso-desconto">
+   
+  <span className="aviso-icone-desconto">🎁</span>
+ <p>
+  Na compra de <strong>200 mudas</strong>  você garante um super <strong>desconto especial</strong>  no seu pedido!
+ </p>
 </div>
 </header>
 
