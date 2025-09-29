@@ -3,8 +3,8 @@
   --cor-secundaria: #4CAF50;
   --cor-fundo-readonly: #eeeeee;
   --cor-fundo: #f8f9fa;
-  --cor-texto: #333333;
-  --cor-texto-secundario: #666;
+  --cor-texto: #0c0c0c;
+  --cor-texto-secundario: #0c0c0c;
   --cor-branco: #ffffff;
   --sombra-padrao: 0 4px 12px rgba(0, 0, 0, 0.08);
 }
@@ -35,8 +35,6 @@
   margin: 0 auto;
 }
 
-/* --- Estilos Gerais para as Seções de Missão, Visão e Valores --- */
-
 .secao-mvv {
   padding: 3rem 0;
   border-top: 1px solid #e0e0e0;
@@ -44,7 +42,7 @@
 
 .secao-mvv:first-of-type {
   border-top: none;
-  padding-top: 0; /* Remove padding extra da primeira seção */
+  padding-top: 0; 
 }
 
 .secao-mvv h3 {
@@ -64,7 +62,7 @@
   margin-bottom: 1rem;
 }
 
-/* --- Estilos da Seção MISSÃO --- */
+
 
 .conteudo-mvv-dividido {
   display: grid;
@@ -200,6 +198,10 @@
   box-shadow: var(--sombra-padrao);
   border-top: 4px solid var(--cor-secundaria);
   text-align: center;
+  opacity: 0;
+  will-change: transform, opacity;
+  transform: translateY(40px) translateZ(0); 
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
 .icone-valor {
@@ -226,6 +228,8 @@
 .conteudo-valores {
   opacity: 0;
   transform: translateY(40px);
+  will-change: transform, opacity; 
+  transform: translateY(40px) translateZ(0); 
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
@@ -234,6 +238,7 @@
 .secao-mvv.is-visible .conteudo-valores {
   opacity: 1;
   transform: translateY(0);
+  transform: translateY(0) translateZ(0);
 }
 
 
@@ -312,15 +317,13 @@
 }
 
 
-/* Estilos específicos do Modal de Feedback */
+
 
 .modal-content h2 {
-    /* Ajuste para o seu estilo */
     color: #1a4d2e; 
     margin-top: 0;
 }
 
-/* Estilos de Formulário */
 .form-group {
     margin-bottom: 20px;
 }
@@ -358,7 +361,7 @@
     font-weight: bold;
 }
 
-/* Se você não tiver um .cta-button global, defina-o aqui */
+
 .modal-content .cta-button {
     width: 100%;
     padding: 12px;
@@ -376,40 +379,110 @@
 }
 
 @media (max-width: 992px) {
-  .conteudo-mvv-dividido {
-    grid-template-columns: 1fr;
-  }
+   
+    .conteudo-mvv-dividido {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
 
-  .layout-invertido .coluna-galeria-mvv {
-    order: -1;
-  }
+    
+    .layout-invertido .coluna-texto-mvv {
+        grid-column: 1; 
+        grid-row: auto;
+    }
+    .layout-invertido .coluna-galeria-mvv {
+        order: 1;
+        grid-column: 1; 
+        grid-row: auto;
+    }
 
-  .coluna-galeria-mvv {
-    margin-top: 2rem;
-    grid-template-columns: 1fr 1fr;
-  }
+   
+    .coluna-galeria-mvv {
+        margin-top: 1.5rem; 
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+    }
 
-  .imagem-galeria:nth-child(2),
-  .secao-visao .imagem-galeria:nth-child(2) {
-    margin-top: 0;
-    margin-left: 0;
-  }
+    
+    .imagem-galeria:nth-child(2),
+    .secao-visao .imagem-galeria:nth-child(2) {
+        margin-top: 0;
+        margin-left: 0;
+    }
 }
-
 @media (max-width: 768px) {
-  .hero-sobre h1 {
-    font-size: 2.2rem;
-  }
-  .secao-mvv {
-    padding: 2.5rem 0;
-  }
-  .secao-mvv h3 {
-    font-size: 1.8rem;
-  }
+    .hero-sobre h1 {
+        font-size: 2.2rem;
+    }
+    .hero-sobre .subtitulo {
+        font-size: 1.1rem;
+    }
+    
+
+    .secao-mvv {
+        padding: 2rem 0;
+    }
+    .secao-mvv h3 {
+        font-size: 1.8rem;
+    }
+    .secao-mvv p, .secao-mvv ul {
+        font-size: 1rem; 
+        line-height: 1.7;
+    }
+
+   
+    .declaracao-missao {
+        font-size: 1.2rem;
+        padding-left: 1rem;
+    }
+    
+    .cta-sobre {
+        padding: 1.5rem 0;
+    }
+    .cta-sobre h2 {
+        font-size: 1.8rem;
+    }
+    
+    
+    .botao-inicio-fixo {
+        padding: 10px 20px;
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
-  .coluna-galeria-mvv {
-      grid-template-columns: 1fr;
-  }
+    
+    .hero-sobre h1 {
+        font-size: 1.8rem;
+    }
+    .hero-sobre .subtitulo {
+        font-size: 0.95rem;
+    }
+    
+    .secao-mvv h3 {
+        font-size: 1.6rem;
+    }
+    
+   
+    .coluna-galeria-mvv {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .imagem-galeria {
+        height: auto; 
+    }
+    
+  
+    .grade-valores {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1rem;
+    }
+    .card-valor {
+        padding: 1.5rem 1rem;
+    }
+  
+    .botao-inicio-fixo {
+        top: 10px;
+        left: 10px;
+    }
 }

@@ -20,7 +20,7 @@ body {
   max-width: 1140px;
   margin: 2rem auto;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 255, 255, 0.70);
   border-radius: 12px;
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
   position: relative;
@@ -220,7 +220,7 @@ main h1 {
 }
 
 .card p {
-  color: #555;
+  color: #0c0c0c;
   font-size: 0.95rem;
   flex-grow: 1;
   overflow: hidden;
@@ -608,60 +608,160 @@ main h1 {
     font-weight: 700;
 }
 
+.aviso-desconto {
+   
+    display: flex;
+    align-items: center;
+    gap: 15px; 
+    
+    
+    background-color: #f1fff1; 
+    border: 1px solid #2e7d32;
+    border-left: 6px solid #2e7d32; 
+    color: #333;
+    
+    
+    padding: 15px 20px;
+    margin: 20px auto; 
+    max-width: 90%; 
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(46, 125, 50, 0.15); 
+    
+    font-size: 16px;
+    line-height: 1.5;
+}
 
-@media (max-width: 600px) {
-    .aviso-importante {
-        flex-direction: column;
-        text-align: center;
-        gap: 5px;
+
+.aviso-icone-desconto {
+    font-size: 24px;
+    line-height: 1;
+    color: #2e7d32; 
+    flex-shrink: 0;
+}
+
+
+.aviso-desconto p {
+    margin: 0;
+}
+
+
+.aviso-desconto strong {
+   
+    color: #1b5e20; 
+    font-weight: 700;
+}
+
+
+@media (max-width: 992px) {
+    .container {
+        padding: 0.5rem; 
     }
-    .aviso-icone {
-        margin-bottom: 5px;
+
+    .carrinho-aberto {
+        width: 300px;
     }
 }
 
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-20px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 @media (max-width: 768px) {
-  .produtos {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
+    
+    .cabecalho {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
 
-  .secao-compras {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    .cabecalho img {
+        max-width: 200px; 
+    }
 
-  .btn-adicionar,
-  .btn-comprar {
-    width: 100%;
-  }
+    .cabecalho-contatos {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+    }
 
-  nav ul {
-    flex-direction: column;
-    gap: 1rem;
-  }
+    .cabecalho-contatos h1 {
+        font-size: 1.5rem; 
+    }
 
-  .contatos-lista {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    .contatos-lista {
+        justify-content: center;
+        gap: 0.75rem;
+        margin-right: 0;
+    }
 
-  .carrinho-aberto {
-    width: 95vw;
-    max-height: 70vh;
-    bottom: 0;
-    right: 50%;
-    transform: translateX(50%);
-    border-radius: 12px 12px 0 0;
-  }
+    nav {
+        margin-top: 1rem;
+        margin-right: 0;
+        justify-content: center;
+    }
+    
+    .nav-links {
+        flex-direction: row; 
+        gap: 0.75rem;
+    }
+    
+    .aviso-importante,
+    .aviso-desconto {
+
+        padding: 10px 15px; 
+    }
+
+
+    .produtos {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+        gap: 1rem;
+    }
+
+    .secao-compras {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+
+    .carrinho-aberto {
+        width: 95vw;
+        max-height: 70vh;
+        bottom: 0;
+        right: 50%;
+        transform: translateX(50%);
+        border-radius: 12px 12px 0 0;
+    }
+}
+
+
+@media (max-width: 480px) {
+
+    .contatos-lista {
+
+        flex-direction: column; 
+        gap: 0.5rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+
+    .filtros {
+        justify-content: space-around;
+        gap: 8px;
+    }
+
+    .btn-filtro {
+        flex-grow: 1; 
+        text-align: center;
+        padding: 8px 10px;
+    }
+
+
+    .produtos {
+        grid-template-columns: 1fr; 
+        gap: 1.5rem;
+    }
+    .card {
+        padding: 1rem;
+    }
 }
