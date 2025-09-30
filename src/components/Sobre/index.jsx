@@ -3,7 +3,9 @@ import { Link } from 'react-router-dom';
 import './SobreNos.css';
 import { FeedbackModal } from './feedbackModal'
 import img1 from "../../assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg";
-import img2 from "../../assets/plantas-de-interior-em-estudio.jpg"
+import img2 from "../../assets/plantas-de-interior-em-estudio.jpg";
+import img3 from "../../assets/segurando-muda.jpeg";
+import img4 from "../../assets/potes-de-mudas.jpg";
 export function SobreNos() {
   const missaoRef = useRef(null);
   const visaoRef = useRef(null);
@@ -67,8 +69,8 @@ export function SobreNos() {
               </ul>
             </div>
             <div className="coluna-galeria-mvv">
-              <img src="../../assets/segurando-muda.jpeg" alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
-              <img src="./src/assets/potes-de-mudas.jpg" alt="Viveiro com mudas saudáveis" className="imagem-galeria" />
+              <img src={img3} alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
+              <img src={img4} alt="Viveiro com mudas saudáveis" className="imagem-galeria" />
             </div>
           </div>
         </section>
