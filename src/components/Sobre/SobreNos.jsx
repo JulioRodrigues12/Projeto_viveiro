@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './SobreNos.css';
 import { FeedbackModal } from './feedbackModal'
+import img1 from "../../assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg";
+import img2 from "../../assets/plantas-de-interior-em-estudio.jpg"
 export function SobreNos() {
   const missaoRef = useRef(null);
   const visaoRef = useRef(null);
@@ -74,8 +76,8 @@ export function SobreNos() {
         <section ref={visaoRef} className="secao-mvv secao-visao">
           <div className="conteudo-mvv-dividido layout-invertido">
             <div className="coluna-galeria-mvv">
-              <img src="./src/assets/area-de-refeicoes-ao-ar-livre-com-plantas-e-claraboia.jpg" alt="Varanda de apartamento com muitas plantas" className="imagem-galeria" />
-              <img src="./src/assets/plantas-de-interior-em-estudio.jpg" alt="Sala de estar decorada com plantas" className="imagem-galeria" />
+              <img src={img1} alt="Varanda de apartamento com muitas plantas" className="imagem-galeria" />
+              <img src={img2} alt="Sala de estar decorada com plantas" className="imagem-galeria" />
             </div>
             <div className="coluna-texto-mvv">
               <div className="icone-mvv">🔭</div>
