@@ -65,7 +65,7 @@ export function SobreNos() {
               </ul>
             </div>
             <div className="coluna-galeria-mvv">
-              <img src="./src/assets/segurando-muda.jpeg" alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
+              <img src="../../assets/segurando-muda.jpeg" alt="Mãos segurando uma muda com cuidado" className="imagem-galeria" />
               <img src="./src/assets/potes-de-mudas.jpg" alt="Viveiro com mudas saudáveis" className="imagem-galeria" />
             </div>
           </div>
