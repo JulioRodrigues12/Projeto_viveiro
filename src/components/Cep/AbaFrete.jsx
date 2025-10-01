@@ -13,6 +13,7 @@ export function AbaFrete() {
   const [cep, setCep] = useState("");
   const [endereco, setEndereco] = useState(null);
   const [numeroCasa, setNumeroCasa] = useState("");
+  const [complemento, setComplemento] = useState(""); // 👈 NOVO CAMPO
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
@@ -126,9 +127,9 @@ export function AbaFrete() {
       return;
     }
 
-if (!telefone || telefoneErro) {
-  setTelefoneErro("Informe um telefone válido com DDD brasileiro");
-  return;
+    if (!telefone || telefoneErro) {
+      setTelefoneErro("Informe um telefone válido com DDD brasileiro");
+      return;
     }
 
     const dadosEnvio = {
@@ -138,6 +139,7 @@ if (!telefone || telefoneErro) {
       cep,
       rua: endereco.logradouro,
       numeroCasa,
+      complemento, // 👈 ADICIONADO
       bairro: endereco.bairro,
       cidade: endereco.localidade,
       estado: endereco.uf,
@@ -152,6 +154,7 @@ if (!telefone || telefoneErro) {
 
  *Endereço:*
 • Rua: ${dadosEnvio.rua}, Nº ${dadosEnvio.numeroCasa}
+${dadosEnvio.complemento ? `• Complemento: ${dadosEnvio.complemento}` : ""}
 • Bairro: ${dadosEnvio.bairro}
 • Cidade: ${dadosEnvio.cidade} - ${dadosEnvio.estado}
 • CEP: ${dadosEnvio.cep}
@@ -256,6 +259,15 @@ ${
             value={numeroCasa}
             onChange={(e) => setNumeroCasa(e.target.value)}
             required
+          />
+        </div>
+        <div className="form-group">
+          <label>Complemento</label>
+          <input
+            className="input-text"
+            value={complemento}
+            onChange={(e) => setComplemento(e.target.value)}
+            placeholder="Apartamento, bloco, referência..."
           />
         </div>
         <div className="form-group">
