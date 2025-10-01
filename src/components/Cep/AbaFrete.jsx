@@ -180,6 +180,8 @@ ${
       textoWhats
     )}`;
     window.open(urlWhats, "_blank");
+
+    localStorage.setItem("carrinhoDeCompras", "[]"); 
   };
 
   return (

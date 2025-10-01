@@ -16,12 +16,24 @@ import {
 } from "react-icons/fa";
 import logo from "../../assets/logo.png";
 
-export function AbaPrincipal() {
-  const navigate = useNavigate();
-  const { atualizarPedido } = useContext(PedidoContext);
-  const [pesquisa, setPesquisa] = useState("");
 
-  const produtos = {
+function getNormalizedFileName(productName) {
+  return productName
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\s+/g, "");
+}
+
+const imageModules = import.meta.glob('../../assets/imagens/*.{png,jpg,jpeg,svg}', { eager: true });
+
+function getImageFromFileName(fileName) {
+    const filePath = `../../assets/imagens/${fileName}`;
+    return imageModules[filePath]?.default || null;
+}
+
+ const produtos = {
   
   // ================= FRUTÍFERAS =================
   prod1: { nome: "Acerola", tipo: "Frutífera", descricao: "Muda de acerola saudável." },
@@ -248,7 +260,7 @@ export function AbaPrincipal() {
 
 };
 
-  const precos = {
+const precos = {
   prod1: 40, prod2: 40, prod3: 40, prod4: 40, prod5: 40,
   prod6: 45, prod7: 40, prod8: 40, prod9: 40, prod10: 45,
   prod11: 40, prod12: 40, prod13: 40, prod14: 40, prod15: 40,
@@ -295,22 +307,6 @@ export function AbaPrincipal() {
   prod216: 20, prod217: 20, prod218: 20,
   };
 
-function getNormalizedFileName(productName) {
-  return productName
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9\s]/g, "")
-    .replace(/\s+/g, "");
-}
-
-const imageModules = import.meta.glob('../../assets/imagens/*.{png,jpg,jpeg,svg}', { eager: true });
-
-function getImageFromFileName(fileName) {
-    const filePath = `../../assets/imagens/${fileName}`;
-    return imageModules[filePath]?.default || null;
-}
-
 const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
   
     const imageName = getNormalizedFileName(prod.nome) + '.jpg'; 
@@ -325,46 +321,71 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
 });
 
 
-  const [carrinho, setCarrinho] = useState([]);
-
-  useEffect(() => {
-    const carrinhoDeCompras = localStorage.getItem("carrinhoDeCompras");
-    console.log(carrinhoDeCompras);
-    if (carrinhoDeCompras) {
-      setCarrinho(JSON.parse(carrinhoDeCompras));
+const getCarrinhoInicial = () => {
+    const savedCarrinho = localStorage.getItem("carrinhoDeCompras");
+    try {
+      return savedCarrinho ? JSON.parse(savedCarrinho) : [];
+    } catch (e) {
+      console.error("Erro ao carregar carrinho do localStorage:", e);
+      return [];
     }
-  }, []);
-
-  const [quantidades, setQuantidades] = useState(
-    Object.keys(produtos).reduce((acc, id) => ({ ...acc, [id]: 1 }), {})
-  );
-
-   const [isModalOpen, setIsModalOpen] = useState(false);
-   const [selectedProduct, setSelectedProduct] = useState(null);
-
-    const handleOpenModal = (product) => {
-    setSelectedProduct(product);
-    setIsModalOpen(true);
 };
 
+export function AbaPrincipal() {
+    const navigate = useNavigate();
+  const { atualizarPedido } = useContext(PedidoContext);
+  
+  
+  const carrinhoInicial = getCarrinhoInicial();
 
-    const handleCloseModal = () => {
-        setIsModalOpen(false);
-        setSelectedProduct(null);
-    };
+
+  const [carrinho, setCarrinho] = useState(carrinhoInicial);
+  
+
+  const getQuantidadesIniciais = () => {
+    return Object.keys(produtos).reduce((acc, id) => ({ ...acc, [id]: 1 }), {});
+  };
 
 
+  const [quantidades, setQuantidades] = useState(getQuantidadesIniciais); 
+
+
+  const [pesquisa, setPesquisa] = useState("");
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState(null);
   const [filtro, setFiltro] = useState("Todos");
   const [carrinhoAberto, setCarrinhoAberto] = useState(false);
+  
 
+  useEffect(() => {
+    localStorage.setItem("carrinhoDeCompras", JSON.stringify(carrinho));
+  }, [carrinho]);
+
+
+
+  const handleOpenModal = (product) => {
+    setSelectedProduct(product);
+    setIsModalOpen(true);
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProduct(null);
+  };
+
+  
+  
   const alterarQuantidade = (id, valor) => {
-    setQuantidades(prev => ({ ...prev, [id]: Math.max(1, prev[id] + valor) }));
+    setQuantidades(prev => ({ 
+      ...prev, 
+
+      [id]: Math.max(1, (prev[id] || 0) + valor) 
+    }));
   };
 
   const adicionarAoCarrinho = (id) => {
-    const qtd = quantidades[id];
-    const preco = precos[id];
+    const qtd = quantidades[id] || 1; 
     const produto = produtos[id];
+
     setCarrinho(prev => {
       const existe = prev.find(item => item.id === id);
       if (existe) {
@@ -373,12 +394,14 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
       const novoCarrinho = [...prev, { 
         id,
         nome: produto.nome,
-      preco, 
-      quantidade: qtd
-     }];
-      localStorage.setItem("carrinhoDeCompras", JSON.stringify(novoCarrinho));
+        preco: precos[id], 
+        quantidade: qtd
+      }];
+   
       return novoCarrinho;
     });
+
+  
     setQuantidades(prev => ({ ...prev, [id]: 1 }));
   };
 
@@ -388,6 +411,7 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
           .filter(item => item.quantidade > 0)
     );
   };
+  
   const totalUnidades = carrinho.reduce((acc, item) => acc + item.quantidade, 0);
   const removerItem = (id) => setCarrinho(prev => prev.filter(item => item.id !== id));
   const limparCarrinho = () => setCarrinho([]);
@@ -397,18 +421,20 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
       itens: carrinho,
       total: carrinho.reduce((acc, item) => acc + item.preco * item.quantidade, 0)
     });
+
     navigate("/cep");
   };
 
-  const produtosFiltrados = produtosCompletos.filter(prod => {
-  const passaTipo = filtro === "Todos" || prod.tipo === filtro;
-  const termo = pesquisa.trim().toLowerCase();
-  const passaTexto =
-    termo === "" ||
-    prod.nome.toLowerCase().includes(termo) ||
-    (prod.descricao || "").toLowerCase().includes(termo);
 
-  return passaTipo && passaTexto;
+  const produtosFiltrados = produtosCompletos.filter(prod => {
+    const passaTipo = filtro === "Todos" || prod.tipo === filtro;
+    const termo = pesquisa.trim().toLowerCase();
+    const passaTexto =
+      termo === "" ||
+      prod.nome.toLowerCase().includes(termo) ||
+      (prod.descricao || "").toLowerCase().includes(termo);
+
+    return passaTipo && passaTexto;
 });
   return (
     <div className="container">
