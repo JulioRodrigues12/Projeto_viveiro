@@ -7,6 +7,7 @@ export const PedidoProvider = ({ children }) => {
 
   const atualizarPedido = (novoPedido) => {
     setPedido(novoPedido);
+    localStorage.setItem("carrinhoDeCompras", "");
   };
 
   return (

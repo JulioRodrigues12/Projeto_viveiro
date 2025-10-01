@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { PedidoContext } from "../Pedido/Pedido";
 import { ProductModal } from "./modal";
@@ -326,6 +326,15 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
 
 
   const [carrinho, setCarrinho] = useState([]);
+
+  useEffect(() => {
+    const carrinhoDeCompras = localStorage.getItem("carrinhoDeCompras");
+    console.log(carrinhoDeCompras);
+    if (carrinhoDeCompras) {
+      setCarrinho(JSON.parse(carrinhoDeCompras));
+    }
+  }, []);
+
   const [quantidades, setQuantidades] = useState(
     Object.keys(produtos).reduce((acc, id) => ({ ...acc, [id]: 1 }), {})
   );
@@ -361,12 +370,14 @@ const produtosCompletos = Object.entries(produtos).map(([id, prod]) => {
       if (existe) {
         return prev.map(item => item.id === id ? { ...item, quantidade: item.quantidade + qtd } : item);
       }
-      return [...prev, { 
+      const novoCarrinho = [...prev, { 
         id,
         nome: produto.nome,
       preco, 
       quantidade: qtd
      }];
+      localStorage.setItem("carrinhoDeCompras", JSON.stringify(novoCarrinho));
+      return novoCarrinho;
     });
     setQuantidades(prev => ({ ...prev, [id]: 1 }));
   };
