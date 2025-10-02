@@ -176,7 +176,7 @@ ${
 ⚠️ O frete deve ser combinado por mensagem.
 `;
 
-    const urlWhats = `https://wa.me/5532984586277/?text=${encodeURIComponent(
+    const urlWhats = `https://wa.me/553299598582/?text=${encodeURIComponent(
       textoWhats
     )}`;
     window.open(urlWhats, "_blank");
